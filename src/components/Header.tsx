@@ -1,0 +1,91 @@
+type Lang = 'ko' | 'en';
+
+interface HeaderProps {
+  lang: Lang;
+}
+
+export function Header({ lang }: HeaderProps) {
+  return (
+    <header
+      style={{
+        borderBottom: '1px solid var(--border)',
+        background: 'var(--bg)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '960px',
+          margin: '0 auto',
+          padding: '0 24px',
+          height: '52px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <a
+          href={lang === 'en' ? '/en/' : '/ko/'}
+          style={{
+            fontWeight: 700,
+            fontSize: '15px',
+            color: 'var(--fg)',
+            textDecoration: 'none',
+            letterSpacing: '-0.01em',
+          }}
+        >
+          apps-in-toss-community
+        </a>
+
+        <nav
+          aria-label="Language switcher"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '2px',
+            background: 'var(--chip-bg)',
+            borderRadius: '8px',
+            padding: '3px',
+          }}
+        >
+          <a
+            href="/ko/"
+            aria-current={lang === 'ko' ? 'page' : undefined}
+            style={{
+              fontSize: '12px',
+              fontWeight: lang === 'ko' ? 600 : 400,
+              color: lang === 'ko' ? 'var(--fg)' : 'var(--muted)',
+              textDecoration: 'none',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              background: lang === 'ko' ? 'var(--card)' : 'transparent',
+              boxShadow: lang === 'ko' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+              transition: 'all 0.1s ease',
+            }}
+          >
+            한국어
+          </a>
+          <a
+            href="/en/"
+            aria-current={lang === 'en' ? 'page' : undefined}
+            style={{
+              fontSize: '12px',
+              fontWeight: lang === 'en' ? 600 : 400,
+              color: lang === 'en' ? 'var(--fg)' : 'var(--muted)',
+              textDecoration: 'none',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              background: lang === 'en' ? 'var(--card)' : 'transparent',
+              boxShadow: lang === 'en' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+              transition: 'all 0.1s ease',
+            }}
+          >
+            English
+          </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
