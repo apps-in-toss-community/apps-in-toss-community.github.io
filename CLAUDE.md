@@ -35,15 +35,16 @@
 
 ### 새 문자열 추가 규칙
 
-모든 텍스트 블록은 **반드시 한국어/영어 둘 다** 작성한다.
+모든 텍스트 블록은 **반드시 한국어/영어 둘 다** 작성하고, 각 블록에 `lang` 속성도 붙인다.
 
 ```html
-<p class="ko">한국어 문장.</p>
-<p class="en">English sentence.</p>
+<p class="ko" lang="ko">한국어 문장.</p>
+<p class="en" lang="en">English sentence.</p>
 ```
 
-- 링크 내부 텍스트도 마찬가지로 분리 (`<span class="ko">...</span><span class="en">...</span>`)
-- 숫자, 제품명, 코드 등 언어에 무관한 내용은 공통 래퍼 없이 그대로 사용
+- `lang` 속성은 스크린 리더가 정확한 언어로 발음하는 데 필요하다
+- 링크 내부 텍스트도 마찬가지로 분리 (`<span class="ko" lang="ko">...</span><span class="en" lang="en">...</span>`)
+- 숫자, 제품명, 코드, 브랜드명 등 언어에 무관한 내용은 공통 래퍼 없이 그대로 사용 (footer의 brand-only 문장이 대표적)
 - 한 쪽 언어에만 적는 것은 허용되지 않음 (토글 시 빈 공간이 생김)
 
 ## Information Architecture
@@ -61,31 +62,40 @@
 
 - **순수 정적 HTML**: 프레임워크/빌드 도구 없이 유지보수 비용 최소화
 - **미니멀 / 중립**: 회색 톤 + 한 가지 accent, 단 hero는 충분히 크게
-- **카드 기반**: 모든 프로젝트/리소스는 클릭 가능한 카드
+- **시맨틱 HTML**: 카드는 `<article>` + `<h3>`. 프로젝트 제목은 문서 아웃라인에 포함되어야 함
+- **중첩 `<a>` 금지**: HTML 스펙 위반 + 예측 불가능한 렌더링. 카드 안에 여러 링크가 필요하면 카드 컨테이너는 `<a>`가 아니어야 함 (본 프로젝트는 `<article>`)
 - **모바일 대응**: `max-width: 760px` + 여유 있는 패딩
 - **토스 색상 언어 존중**: `#3182f6` accent, `#191f28` text 등 앱인토스 미니앱 개발자에게 친숙한 팔레트
+
+## 접근성
+
+- 각 언어 블록에는 `lang="ko"` / `lang="en"` 속성을 반드시 붙인다 (스크린 리더 발음 정확성)
+- 언어 토글 버튼은 JS로 `aria-label`을 현재 언어에 맞게 업데이트한다 (예: 한국어일 때 `Switch to English`)
+- 카드 제목은 `<h3>`로 작성하여 문서 아웃라인에 포함
+- 섹션은 `<section aria-labelledby="...">` + `<h2 id="...">` 연결
+- 포커스 가능한 요소에는 `:focus-visible` 스타일
 
 ## 새 프로젝트 추가 절차
 
 1. 프로젝트가 "Available"인지 "Coming Soon"인지 결정
-2. 해당 섹션의 `.grid` 안에 `<a class="card">` 블록 추가
-   - `.title`: 프로젝트 이름 (monospace)
+2. 해당 섹션의 `.grid` 안에 `<article class="card">` 블록 추가
+   - `<h3>` 안에 GitHub 링크 `<a>` 하나
    - Coming Soon은 `<span class="chip wip">WIP</span>` 추가
-   - `.desc.ko` + `.desc.en` 양쪽 반드시 작성
-   - 웹 데모가 있으면 `<a class="demo">` (한/영 `<span>` 포함)
+   - `<p class="desc ko" lang="ko">` + `<p class="desc en" lang="en">` 양쪽 반드시 작성
+   - 웹 데모가 있으면 `<a class="demo">` 추가 (한/영 `<span lang="...">` 포함)
 3. commit + push → GitHub Pages 자동 배포 (약 30초)
 
 예시:
 
 ```html
-<a class="card" href="https://github.com/apps-in-toss-community/new-project">
-  <div class="title">
-    new-project
+<article class="card">
+  <h3>
+    <a href="https://github.com/apps-in-toss-community/new-project">new-project</a>
     <span class="chip wip">WIP</span>
-  </div>
-  <div class="desc ko">한국어 설명.</div>
-  <div class="desc en">English description.</div>
-</a>
+  </h3>
+  <p class="desc ko" lang="ko">한국어 설명.</p>
+  <p class="desc en" lang="en">English description.</p>
+</article>
 ```
 
 ## 배포
