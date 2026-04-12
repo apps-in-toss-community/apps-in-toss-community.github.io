@@ -1,57 +1,107 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>apps-in-toss-community</title>
-    <meta name="description" content="앱인토스 커뮤니티 오픈소스 프로젝트 모음" />
+    <meta name="description" content="앱인토스 미니앱 개발을 가장 편하게. The most convenient way to build Apps in Toss mini-apps." />
     <style>
       :root {
         color-scheme: light;
         --fg: #191f28;
+        --fg-soft: #4e5968;
         --muted: #8b95a1;
         --bg: #f4f5f7;
         --card: #ffffff;
         --border: #e5e8eb;
-        --accent: #191f28;
+        --border-strong: #c9ced4;
+        --accent: #3182f6;
+        --chip-bg: #edf0f3;
+        --chip-wip-bg: #fff4e0;
+        --chip-wip-fg: #8c5000;
       }
       * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
       body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
         background: var(--bg);
         color: var(--fg);
         -webkit-font-smoothing: antialiased;
-      }
-      main {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 64px 24px;
-      }
-      header { margin-bottom: 48px; }
-      h1 {
-        font-size: 32px;
-        font-weight: 800;
-        margin: 0 0 8px;
-        letter-spacing: -0.02em;
-      }
-      header p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 15px;
         line-height: 1.5;
       }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 56px 24px 80px;
+      }
+
+      /* Lang switcher */
+      .lang-switch {
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: flex-end;
+        padding: 12px 0 0;
+        margin-bottom: -20px;
+        z-index: 10;
+      }
+      .lang-switch button {
+        font: inherit;
+        background: var(--card);
+        color: var(--fg-soft);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 10px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .lang-switch button:hover { border-color: var(--border-strong); }
+
+      /* Hero */
+      header.hero {
+        padding: 40px 0 32px;
+      }
+      header.hero h1 {
+        font-size: 34px;
+        font-weight: 800;
+        margin: 0 0 12px;
+        letter-spacing: -0.02em;
+      }
+      header.hero p.tagline {
+        margin: 0;
+        font-size: 17px;
+        color: var(--fg-soft);
+      }
+
+      /* Value list */
+      ul.values {
+        list-style: none;
+        padding: 0;
+        margin: 24px 0 0;
+        display: grid;
+        gap: 8px;
+      }
+      ul.values li {
+        font-size: 15px;
+        color: var(--fg-soft);
+      }
+
+      /* Sections */
+      section { margin-top: 48px; }
       h2 {
         font-size: 13px;
         font-weight: 600;
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin: 40px 0 12px;
+        letter-spacing: 0.08em;
+        margin: 0 0 12px;
       }
+
+      /* Project grid */
       .grid { display: grid; gap: 12px; }
       a.card {
         display: block;
+        position: relative;
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 14px;
@@ -61,29 +111,73 @@
         transition: transform 0.1s ease, border-color 0.1s ease;
       }
       a.card:hover {
-        border-color: #c9ced4;
+        border-color: var(--border-strong);
         transform: translateY(-1px);
       }
       a.card .title {
         font-weight: 700;
         font-size: 16px;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         font-family: ui-monospace, "SF Mono", Menlo, monospace;
       }
       a.card .desc {
         font-size: 14px;
-        color: var(--muted);
-        line-height: 1.5;
+        color: var(--fg-soft);
+        line-height: 1.55;
       }
       a.card .demo {
         display: inline-block;
-        margin-top: 10px;
+        margin-top: 12px;
         font-size: 12px;
         color: var(--fg);
-        background: #f1f2f4;
+        background: var(--chip-bg);
         padding: 4px 10px;
         border-radius: 6px;
       }
+      .chip {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        padding: 2px 8px;
+        border-radius: 999px;
+        vertical-align: middle;
+        margin-left: 8px;
+      }
+      .chip.wip {
+        background: var(--chip-wip-bg);
+        color: var(--chip-wip-fg);
+      }
+
+      /* Quickstart */
+      .quickstart pre {
+        margin: 10px 0 0;
+        background: #191f28;
+        color: #e5e8eb;
+        padding: 16px 18px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-size: 13px;
+        line-height: 1.6;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      .quickstart p { margin: 0 0 8px; font-size: 14px; color: var(--fg-soft); }
+
+      /* Resources */
+      ul.resources {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+      ul.resources li a {
+        color: var(--fg);
+        font-size: 14px;
+        text-decoration: none;
+      }
+      ul.resources li a:hover { text-decoration: underline; }
+
       footer {
         margin-top: 64px;
         padding-top: 24px;
@@ -92,31 +186,174 @@
         font-size: 13px;
       }
       footer a { color: inherit; }
+
+      /* i18n visibility */
+      [data-lang="ko"] .en,
+      [data-lang="en"] .ko { display: none; }
     </style>
   </head>
   <body>
     <main>
-      <header>
+      <nav class="lang-switch" aria-label="Language switcher">
+        <button id="lang-toggle" type="button" aria-live="polite">
+          <span class="ko">English →</span>
+          <span class="en">한국어 →</span>
+        </button>
+      </nav>
+
+      <header class="hero">
         <h1>apps-in-toss-community</h1>
-        <p>앱인토스 미니앱 개발을 위한 오픈소스 프로젝트 모음입니다.</p>
+        <p class="tagline ko">앱인토스 미니앱 개발을 가장 편하게.</p>
+        <p class="tagline en">The most convenient way to build Apps in Toss mini-apps.</p>
+
+        <ul class="values ko">
+          <li>🛠️ <strong>개발</strong>: 토스 앱 없이 브라우저에서 mock으로 개발</li>
+          <li>🧪 <strong>실험</strong>: 모든 SDK API를 인터랙티브하게 테스트</li>
+          <li>🌐 <strong>표준</strong>: 독점 SDK 대신 웹 표준 API로 작성</li>
+          <li>📚 <strong>학습</strong>: 친절하고 세련된 문서</li>
+          <li>🤖 <strong>자동화</strong>: Claude Code로 미니앱을 만들고 배포</li>
+        </ul>
+        <ul class="values en">
+          <li>🛠️ <strong>Develop</strong> without the Toss app — run mocks in your browser</li>
+          <li>🧪 <strong>Experiment</strong> with every SDK API interactively</li>
+          <li>🌐 <strong>Write</strong> with standard Web APIs instead of a proprietary SDK</li>
+          <li>📚 <strong>Learn</strong> from clean, friendly docs</li>
+          <li>🤖 <strong>Automate</strong> mini-app development with Claude Code</li>
+        </ul>
       </header>
 
-      <h2>Projects</h2>
-      <div class="grid">
-        <a class="card" href="https://github.com/apps-in-toss-community/devtools">
-          <div class="title">@ait-co/devtools</div>
-          <div class="desc">@apps-in-toss/web-framework SDK의 mock 라이브러리. 앱인토스 미니앱을 토스 앱 없이 일반 크롬 브라우저에서 개발/테스트할 수 있게 해줍니다.</div>
-        </a>
-        <a class="card" href="https://github.com/apps-in-toss-community/sdk-example">
-          <div class="title">sdk-example</div>
-          <div class="desc">SDK의 모든 public API를 인터랙티브하게 테스트할 수 있는 레퍼런스 앱.</div>
-          <a class="demo" href="https://apps-in-toss-community.github.io/sdk-example/">웹 데모 열기 →</a>
-        </a>
-      </div>
+      <section>
+        <h2 class="ko">사용 가능</h2>
+        <h2 class="en">Available Now</h2>
+        <div class="grid">
+          <a class="card" href="https://github.com/apps-in-toss-community/devtools">
+            <div class="title">@ait-co/devtools</div>
+            <div class="desc ko">
+              <code>@apps-in-toss/web-framework</code> SDK의 mock 라이브러리 + universal bundler plugin + floating DevTools panel. 토스 앱 없이 크롬에서 미니앱을 개발할 수 있습니다.
+            </div>
+            <div class="desc en">
+              A mock library for <code>@apps-in-toss/web-framework</code>, a universal bundler plugin, and a floating DevTools panel. Develop mini-apps in Chrome without the Toss app.
+            </div>
+          </a>
+          <a class="card" href="https://github.com/apps-in-toss-community/sdk-example">
+            <div class="title">sdk-example</div>
+            <div class="desc ko">
+              실제 SDK API를 브라우저에서 인터랙티브하게 실행해보고 코드를 함께 확인할 수 있는 레퍼런스 앱.
+            </div>
+            <div class="desc en">
+              A reference app that lets you run every SDK API interactively in your browser while reading the corresponding code side-by-side.
+            </div>
+            <a class="demo" href="https://apps-in-toss-community.github.io/sdk-example/">
+              <span class="ko">웹 데모 열기 →</span>
+              <span class="en">Open web demo →</span>
+            </a>
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="ko">예정</h2>
+        <h2 class="en">Coming Soon</h2>
+        <div class="grid">
+          <a class="card" href="https://github.com/apps-in-toss-community/polyfill">
+            <div class="title">
+              @ait-co/polyfill
+              <span class="chip wip">WIP</span>
+            </div>
+            <div class="desc ko">
+              독점 SDK 대신 <code>navigator.clipboard</code>, <code>navigator.geolocation</code> 같은 웹 표준 API를 그대로 사용해 미니앱을 만들 수 있는 polyfill.
+            </div>
+            <div class="desc en">
+              Build mini-apps using standard Web APIs (<code>navigator.clipboard</code>, <code>navigator.geolocation</code>, ...) instead of the proprietary SDK.
+            </div>
+          </a>
+          <a class="card" href="https://github.com/apps-in-toss-community/docs">
+            <div class="title">
+              docs
+              <span class="chip wip">WIP</span>
+            </div>
+            <div class="desc ko">
+              공식 문서를 기반으로 더 세련되고 친절하게 재구성한 가이드/레퍼런스 문서 세트.
+            </div>
+            <div class="desc en">
+              A cleaner, friendlier guide and reference built on top of the official documentation.
+            </div>
+          </a>
+          <a class="card" href="https://github.com/apps-in-toss-community/claude-code-plugin">
+            <div class="title">
+              claude-code-plugin
+              <span class="chip wip">WIP</span>
+            </div>
+            <div class="desc ko">
+              위 모든 도구를 엮어, Claude Code 안에서 미니앱을 생성·개발·테스트·배포할 수 있는 공식 플러그인.
+            </div>
+            <div class="desc en">
+              Ties everything together so you can scaffold, develop, test, and publish mini-apps from inside Claude Code.
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="quickstart">
+        <h2 class="ko">빠른 시작</h2>
+        <h2 class="en">Quick start</h2>
+        <p class="ko">로컬에서 미니앱을 개발 중이라면 <code>@ait-co/devtools</code>를 추가하세요:</p>
+        <p class="en">If you are already developing a mini-app locally, add <code>@ait-co/devtools</code>:</p>
+<pre><code>pnpm add -D @ait-co/devtools</code></pre>
+        <p class="ko"><code>vite.config.ts</code>에 플러그인을 추가하면 개발 중에 SDK import가 자동으로 mock으로 swap됩니다:</p>
+        <p class="en">Adding the plugin to <code>vite.config.ts</code> swaps SDK imports for mocks at dev time:</p>
+<pre><code>import { defineConfig } from 'vite';
+import aitDevtools from '@ait-co/devtools/unplugin';
+
+export default defineConfig({
+  plugins: [aitDevtools.vite({ panel: true })],
+});</code></pre>
+      </section>
+
+      <section>
+        <h2 class="ko">리소스</h2>
+        <h2 class="en">Resources</h2>
+        <ul class="resources">
+          <li><a href="https://github.com/apps-in-toss-community">🔗 GitHub organization</a></li>
+          <li><a href="https://www.npmjs.com/package/@apps-in-toss/web-framework">📦 @apps-in-toss/web-framework (npm)</a></li>
+          <li><a href="https://apps-in-toss-community.github.io/sdk-example/">🧪 SDK Web Demo</a></li>
+        </ul>
+      </section>
 
       <footer>
-        <a href="https://github.com/apps-in-toss-community">GitHub organization</a>
+        <span class="ko">© apps-in-toss-community — community-driven, not affiliated with Toss.</span>
+        <span class="en">© apps-in-toss-community — community-driven, not affiliated with Toss.</span>
       </footer>
     </main>
+
+    <script>
+      (function () {
+        const html = document.documentElement;
+        const btn = document.getElementById('lang-toggle');
+        const KEY = 'ait-landing-lang';
+
+        function apply(lang) {
+          html.setAttribute('data-lang', lang);
+          html.setAttribute('lang', lang);
+          try { localStorage.setItem(KEY, lang); } catch (e) {}
+        }
+
+        // Initial: saved pref > browser language
+        try {
+          const saved = localStorage.getItem(KEY);
+          if (saved === 'en' || saved === 'ko') {
+            apply(saved);
+          } else if ((navigator.language || '').toLowerCase().startsWith('ko')) {
+            apply('ko');
+          } else {
+            apply('en');
+          }
+        } catch (e) { apply('ko'); }
+
+        btn.addEventListener('click', function () {
+          apply(html.getAttribute('data-lang') === 'ko' ? 'en' : 'ko');
+        });
+      })();
+    </script>
   </body>
 </html>
