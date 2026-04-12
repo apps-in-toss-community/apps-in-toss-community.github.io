@@ -51,12 +51,17 @@
 
 페이지 섹션 순서 (둘 다 유지):
 
-1. **Hero** — 가치 제안 한 줄 + 5개 핵심 가치 불릿
-2. **Available Now** — 현재 사용 가능한 프로젝트 카드
-3. **Coming Soon** — 계획 단계 프로젝트 카드 (WIP chip)
-4. **Quick start** — 실행 가능한 코드 스니펫
-5. **Resources** — 외부 링크
-6. **Footer** — 저작권 / disclaimer
+1. **Hero** — 프로젝트 이름 + 한 줄 tagline
+2. **What we offer / 이런 것들을 할 수 있어요** — 5개 bullet (리더가 얻을 수 있는 것)
+3. **Available Now** — 현재 사용 가능한 프로젝트 카드
+4. **Getting started with devtools / devtools로 시작하기** — devtools 설치·설정 코드 스니펫 (devtools-specific 임을 명시)
+5. **Coming Soon** — 계획 단계 프로젝트 카드 (WIP chip)
+6. **Resources** — 외부 링크
+7. **Footer** — 저작권 / disclaimer
+
+**섹션 이름 원칙**:
+- 조직 미션을 설명하려 하지 말고, **리더가 얻을 수 있는 가치**로 표현한다 ("What we're building" ❌ / "What we offer" ✅)
+- 특정 프로젝트에 귀속되는 섹션(Quick start 등)은 **이름에 프로젝트 명시** ("Getting started with devtools"). 단순히 "Quick start"라고 하면 org 전체로 오해됨
 
 ## 디자인 원칙
 
