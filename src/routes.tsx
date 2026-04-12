@@ -9,8 +9,8 @@ export const routes: RouteRecord[] = [
     element: <Layout />,
     children: [
       { index: true, element: <HomeKo /> },
-      { path: 'ko', element: <HomeKo /> },
-      { path: 'en', element: <HomeEn /> },
+      { path: 'ko/', element: <HomeKo /> },
+      { path: 'en/', element: <HomeEn /> },
     ],
   },
 ];
