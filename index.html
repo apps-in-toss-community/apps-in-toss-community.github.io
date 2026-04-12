@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>apps-in-toss-community</title>
+    <meta name="description" content="앱인토스 커뮤니티 오픈소스 프로젝트 모음" />
+    <style>
+      :root {
+        color-scheme: light;
+        --fg: #191f28;
+        --muted: #8b95a1;
+        --bg: #f4f5f7;
+        --card: #ffffff;
+        --border: #e5e8eb;
+        --accent: #191f28;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 64px 24px;
+      }
+      header { margin-bottom: 48px; }
+      h1 {
+        font-size: 32px;
+        font-weight: 800;
+        margin: 0 0 8px;
+        letter-spacing: -0.02em;
+      }
+      header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      h2 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin: 40px 0 12px;
+      }
+      .grid { display: grid; gap: 12px; }
+      a.card {
+        display: block;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px 22px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.1s ease, border-color 0.1s ease;
+      }
+      a.card:hover {
+        border-color: #c9ced4;
+        transform: translateY(-1px);
+      }
+      a.card .title {
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 4px;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      a.card .desc {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      a.card .demo {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--fg);
+        background: #f1f2f4;
+        padding: 4px 10px;
+        border-radius: 6px;
+      }
+      footer {
+        margin-top: 64px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 13px;
+      }
+      footer a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>apps-in-toss-community</h1>
+        <p>앱인토스 미니앱 개발을 위한 오픈소스 프로젝트 모음입니다.</p>
+      </header>
+
+      <h2>Projects</h2>
+      <div class="grid">
+        <a class="card" href="https://github.com/apps-in-toss-community/devtools">
+          <div class="title">@ait-co/devtools</div>
+          <div class="desc">@apps-in-toss/web-framework SDK의 mock 라이브러리. 앱인토스 미니앱을 토스 앱 없이 일반 크롬 브라우저에서 개발/테스트할 수 있게 해줍니다.</div>
+        </a>
+        <a class="card" href="https://github.com/apps-in-toss-community/sdk-example">
+          <div class="title">sdk-example</div>
+          <div class="desc">SDK의 모든 public API를 인터랙티브하게 테스트할 수 있는 레퍼런스 앱.</div>
+          <a class="demo" href="https://apps-in-toss-community.github.io/sdk-example/">웹 데모 열기 →</a>
+        </a>
+      </div>
+
+      <footer>
+        <a href="https://github.com/apps-in-toss-community">GitHub organization</a>
+      </footer>
+    </main>
+  </body>
+</html>
