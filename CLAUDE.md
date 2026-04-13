@@ -1,5 +1,19 @@
 # CLAUDE.md
 
+## 프로젝트 성격 (중요)
+
+**`apps-in-toss-community`는 비공식(unofficial) 오픈소스 커뮤니티다.** 토스(Toss) 또는 앱인토스(Apps in Toss) 팀과 제휴 관계가 아니며, 공식 프로젝트가 아니다.
+
+landing page와 org profile README는 조직의 얼굴이므로 특히 더 주의할 것. 다음 표현을 **절대 사용하지 말 것**:
+
+- "공식(official)", "공식 플러그인", "공식 도구", "official plugin/tool/SDK"
+- "토스가 제공하는", "앱인토스에서 만든", "powered by Toss"
+- 토스와의 제휴/후원/인증을 암시하는 모든 표현
+
+대신 "커뮤니티(community)", "오픈소스", "비공식(unofficial)" 같은 표현을 사용한다. 의심스러우면 빼라.
+
+이 규칙은 `content/` (MDX/TS 콘텐츠), `scripts/sync-readme.ts`로 생성되는 org profile README, 모든 UI 카피에 동일하게 적용된다.
+
 ## 프로젝트 개요
 
 **apps-in-toss-community.github.io** — `apps-in-toss-community` GitHub organization의 landing page.
