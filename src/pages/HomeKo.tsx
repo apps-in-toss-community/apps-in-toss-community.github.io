@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Head } from 'vite-react-ssg';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { ValueList } from '../components/ValueList';
@@ -8,31 +8,24 @@ import { Resources } from '../components/Resources';
 import { Footer } from '../components/Footer';
 
 const LANG = 'ko' as const;
+const TITLE = 'apps-in-toss-community — 앱인토스 미니앱 개발을 가장 편하게';
+const DESCRIPTION = '앱인토스 미니앱 개발을 가장 편하게.';
 const CANONICAL = 'https://apps-in-toss-community.github.io/ko/';
 
 export function HomeKo() {
-  useEffect(() => {
-    document.documentElement.setAttribute('lang', LANG);
-
-    // Set canonical link
-    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', CANONICAL);
-
-    // Set page title and description
-    document.title = 'apps-in-toss-community — 앱인토스 미니앱 개발을 가장 편하게';
-    const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', '앱인토스 미니앱 개발을 가장 편하게. 토스 앱 없이 브라우저에서 미니앱을 구동하고 테스트하세요.');
-    }
-  }, []);
-
   return (
     <>
+      {/* <Head> bakes metadata into SSG output at build time.
+          useEffect mutations are intentionally removed: the language-switcher
+          links (<a href="/en/"> etc.) cause full page reloads, so each
+          pre-rendered page already has the correct <title>, <html lang>,
+          and <link rel="canonical"> without any client-side patching. */}
+      <Head>
+        <html lang={LANG} />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
+        <link rel="canonical" href={CANONICAL} />
+      </Head>
       <Header lang={LANG} />
       <main>
         <Hero lang={LANG} />
