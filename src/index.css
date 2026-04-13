@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --fg: #191f28;
+    --fg-soft: #4e5968;
+    --muted: #8b95a1;
+    --bg: #f4f5f7;
+    --card: #ffffff;
+    --border: #e5e8eb;
+    --border-strong: #c9ced4;
+    --accent: #3182f6;
+    --accent-hover: #1c6ef2;
+    --accent-soft: rgba(49, 130, 246, 0.1);
+    --accent-softer: rgba(49, 130, 246, 0.08);
+    --accent-soft-strong: rgba(49, 130, 246, 0.16);
+    --chip-bg: #edf0f3;
+    --chip-wip-bg: #fff4e0;
+    --chip-wip-fg: #8c5000;
+    --chip-wip-border: #e8a030;
+    --card-wip: #fafafa;
+    --border-wip: #c9ced4;
+    --code-bg: #191f28;
+    --code-fg: #e5e8eb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #e5e8eb;
+      --fg-soft: #b0b8c1;
+      --muted: #6b7684;
+      --bg: #111318;
+      --card: #1c2028;
+      --border: #2e3440;
+      --border-strong: #404858;
+      --accent: #4d9cf8;
+      --accent-hover: #3182f6;
+      --accent-soft: rgba(77, 156, 248, 0.14);
+      --accent-softer: rgba(77, 156, 248, 0.10);
+      --accent-soft-strong: rgba(77, 156, 248, 0.20);
+      --chip-bg: #2e3440;
+      --chip-wip-bg: #332200;
+      --chip-wip-fg: #ffb84d;
+      --chip-wip-border: #c87a00;
+      --card-wip: #161b24;
+      --border-wip: #3a4050;
+      --code-bg: #0d1117;
+      --code-fg: #e5e8eb;
+    }
+  }
+
+  html {
+    font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Noto Sans KR", "Segoe UI", sans-serif;
+    background-color: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, "Fira Code", monospace;
+    font-size: 0.875em;
+    background: var(--chip-bg);
+    color: var(--fg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   ProjectCard responsive padding
+   ------------------------------------------------------------------------- */
+.project-card {
+  padding: 24px;
+}
+
+/* -------------------------------------------------------------------------
+   ProjectGrid gap (CSS-only; no inline gap override needed)
+   ------------------------------------------------------------------------- */
+.project-grid-gap {
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .project-card {
+    padding: 20px 18px;
+  }
+
+  .project-card p {
+    font-size: 13px;
+  }
+
+  .project-grid-gap {
+    gap: 16px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Hero CTA buttons — base, hover & focus-visible
+   ------------------------------------------------------------------------- */
+.hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 11px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.hero-cta-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.hero-cta-primary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  background: var(--accent-hover);
+}
+
+.hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 11px 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+
+.hero-cta-secondary:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.hero-cta-secondary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   ProjectCard — base, hover & focus-visible
+   ------------------------------------------------------------------------- */
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease, opacity 0.12s ease;
+}
+
+.project-card--wip {
+  background: var(--card-wip);
+  border: 1px dashed var(--border-wip);
+  opacity: 0.65;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.project-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+
+.project-card.project-card--wip:hover {
+  opacity: 0.9;
+}
+
+/* ProjectCard repo name link */
+.project-card-name-link:hover {
+  text-decoration: underline;
+}
+
+.project-card-name-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ProjectCard demo link */
+.project-card-demo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-softer);
+  padding: 5px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.1s ease;
+}
+
+.project-card-demo-link:hover {
+  background: var(--accent-soft-strong);
+}
+
+.project-card-demo-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   Resources list links — base, hover & focus-visible
+   ------------------------------------------------------------------------- */
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.1s ease;
+}
+
+.resource-link:hover {
+  color: var(--accent);
+}
+
+.resource-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  color: var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   Header language switcher links — focus-visible
+   ------------------------------------------------------------------------- */
+.lang-switch-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

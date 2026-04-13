@@ -1,0 +1,18 @@
+Add `@ait-co/devtools` to your mini-app project:
+
+```bash
+pnpm add -D @ait-co/devtools
+```
+
+Add the plugin to `vite.config.ts` and SDK imports are automatically swapped for mocks at dev time, so your app runs straight in the browser:
+
+```ts
+import { defineConfig } from 'vite';
+import aitDevtools from '@ait-co/devtools/unplugin';
+
+export default defineConfig({
+  plugins: [aitDevtools.vite({ panel: true })],
+});
+```
+
+The real SDK is used as-is in production.

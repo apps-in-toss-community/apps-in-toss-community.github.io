@@ -1,0 +1,63 @@
+name: Sync org profile README
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'scripts/sync-readme.ts'
+      - '.github/workflows/sync-org-readme.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-org-readme
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify SYNC_PAT is set
+        run: test -n "${{ secrets.SYNC_PAT }}" || { echo "::error::SYNC_PAT secret not set"; exit 1; }
+
+      - uses: actions/checkout@v4
+        with:
+          path: source
+
+      - uses: actions/checkout@v4
+        with:
+          repository: apps-in-toss-community/.github
+          token: ${{ secrets.SYNC_PAT }}
+          path: dotgithub
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: source/.nvmrc
+          cache: pnpm
+          cache-dependency-path: source/pnpm-lock.yaml
+
+      - name: Install source deps
+        working-directory: source
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate READMEs
+        working-directory: source
+        run: pnpm sync:readme --out ../dotgithub/profile
+
+      - name: Commit and push if changed
+        working-directory: dotgithub
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No README changes"
+            exit 0
+          fi
+
+          git add profile/README.md profile/README.en.md
+          git commit -m "chore: sync profile README from homepage $GITHUB_SHA"
+          git push

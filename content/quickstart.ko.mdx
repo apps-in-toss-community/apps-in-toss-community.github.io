@@ -1,0 +1,18 @@
+개발 중인 미니앱에 `@ait-co/devtools`를 추가합니다:
+
+```bash
+pnpm add -D @ait-co/devtools
+```
+
+`vite.config.ts`에 플러그인을 추가하면, 개발 중에는 SDK import가 자동으로 mock으로 대체되어 브라우저에서 바로 실행할 수 있습니다:
+
+```ts
+import { defineConfig } from 'vite';
+import aitDevtools from '@ait-co/devtools/unplugin';
+
+export default defineConfig({
+  plugins: [aitDevtools.vite({ panel: true })],
+});
+```
+
+실제 배포에서는 원본 SDK가 그대로 사용됩니다.
