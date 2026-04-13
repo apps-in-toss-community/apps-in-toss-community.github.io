@@ -82,7 +82,14 @@ function CodeBlock({
     return <InlineCode>{children}</InlineCode>;
   }
 
-  const text = typeof children === 'string' ? children.trimEnd() : '';
+  if (typeof children !== 'string') {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('CodeBlock received non-string children:', children);
+    }
+    return null;
+  }
+
+  const text = children.trimEnd();
   const lang = className.replace('language-', '');
 
   return (

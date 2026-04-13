@@ -61,14 +61,19 @@ export function LangBanner() {
   const switchTo: Lang = browserLang;
   const switchHref = switchTo === 'en' ? '/en/' : '/ko/';
   const switchLabel = switchTo === 'en' ? 'Switch to English' : '한국어로 전환';
+  // `message` intentionally shows the OPPOSITE language context:
+  // e.g. "This page is in Korean." appears on the Korean page when the
+  // browser language is English, prompting the user to switch.
   const message =
     pageLang === 'ko'
       ? 'This page is in Korean.'
       : '이 페이지는 영어로 제공됩니다.';
 
   return (
-    <div
-      role="banner"
+    // <section> with aria-label avoids conflicting with the implicit
+    // role="banner" already carried by the <header> element in Header.tsx.
+    <section
+      aria-label="Language preference"
       style={{
         background: 'var(--card)',
         borderBottom: '1px solid var(--border)',
@@ -83,6 +88,11 @@ export function LangBanner() {
       }}
     >
       <span>{message}</span>
+      {/*
+       * Deliberately using <a> instead of react-router's <Link>: a full-page
+       * reload is desirable here so the SSG-baked <title>, <html lang>, and
+       * <link rel="canonical"> of the target route take effect immediately.
+       */}
       <a
         href={switchHref}
         style={{
@@ -110,6 +120,6 @@ export function LangBanner() {
       >
         ×
       </button>
-    </div>
+    </section>
   );
 }
