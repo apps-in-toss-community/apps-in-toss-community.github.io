@@ -15,11 +15,9 @@ const CANONICAL = 'https://apps-in-toss-community.github.io/en/';
 export function HomeEn() {
   return (
     <>
-      {/* <Head> bakes metadata into SSG output at build time.
-          useEffect mutations are intentionally removed: the language-switcher
-          links (<a href="/ko/"> etc.) cause full page reloads, so each
-          pre-rendered page already has the correct <title>, <html lang>,
-          and <link rel="canonical"> without any client-side patching. */}
+      {/* `<Head>` bakes metadata into SSG output so first-paint SEO is correct,
+          and the language switcher uses full-page reloads so the baked metadata
+          always matches the visible route. */}
       <Head>
         <html lang={LANG} />
         <title>{TITLE}</title>

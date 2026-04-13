@@ -114,47 +114,77 @@
 }
 
 /* -------------------------------------------------------------------------
-   Hero CTA buttons — hover & focus-visible
+   Hero CTA buttons — base, hover & focus-visible
    ------------------------------------------------------------------------- */
 .hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 11px 24px;
+  border-radius: 10px;
+  text-decoration: none;
   transition: background 0.15s ease, transform 0.1s ease;
 }
 
 .hero-cta-primary:hover {
-  background: var(--accent-hover) !important;
+  background: var(--accent-hover);
   transform: translateY(-1px);
 }
 
 .hero-cta-primary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  background: var(--accent-hover) !important;
+  background: var(--accent-hover);
 }
 
 .hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 11px 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  text-decoration: none;
   transition: border-color 0.15s ease, transform 0.1s ease;
 }
 
 .hero-cta-secondary:hover {
-  border-color: var(--accent) !important;
+  border-color: var(--accent);
   transform: translateY(-1px);
 }
 
 .hero-cta-secondary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-color: var(--accent) !important;
+  border-color: var(--accent);
 }
 
 /* -------------------------------------------------------------------------
-   ProjectCard — hover & focus-visible
+   ProjectCard — base, hover & focus-visible
    ------------------------------------------------------------------------- */
 .project-card {
+  background: var(--card);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
   transition: border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease, opacity 0.12s ease;
 }
 
+.project-card--wip {
+  background: var(--card-wip);
+  border: 1px dashed var(--border-wip);
+  opacity: 0.65;
+}
+
 .project-card:hover {
-  border-color: var(--accent) !important;
+  border-color: var(--accent);
   box-shadow: 0 4px 16px var(--accent-soft);
   transform: translateY(-2px);
 }
@@ -162,7 +192,7 @@
 .project-card:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-color: var(--accent) !important;
+  border-color: var(--accent);
 }
 
 .project-card.project-card--wip:hover {
@@ -181,11 +211,21 @@
 
 /* ProjectCard demo link */
 .project-card-demo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-softer);
+  padding: 5px 12px;
+  border-radius: 6px;
+  text-decoration: none;
   transition: background 0.1s ease;
 }
 
 .project-card-demo-link:hover {
-  background: var(--accent-soft-strong) !important;
+  background: var(--accent-soft-strong);
 }
 
 .project-card-demo-link:focus-visible {
@@ -194,20 +234,26 @@
 }
 
 /* -------------------------------------------------------------------------
-   Resources list links — hover & focus-visible
+   Resources list links — base, hover & focus-visible
    ------------------------------------------------------------------------- */
 .resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg);
+  font-size: 14px;
+  text-decoration: none;
   transition: color 0.1s ease;
 }
 
 .resource-link:hover {
-  color: var(--accent) !important;
+  color: var(--accent);
 }
 
 .resource-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  color: var(--accent) !important;
+  color: var(--accent);
 }
 
 /* -------------------------------------------------------------------------

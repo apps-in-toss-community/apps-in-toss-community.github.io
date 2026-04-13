@@ -26,13 +26,6 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
   return (
     <article
       className={`project-card${isAvailable ? '' : ' project-card--wip'}`}
-      style={{
-        background: isAvailable ? 'var(--card)' : 'var(--card-wip)',
-        border: `1px solid ${isAvailable ? 'var(--border-strong)' : 'var(--border-wip)'}`,
-        borderRadius: '14px',
-        opacity: isAvailable ? 1 : 0.65,
-        borderStyle: isAvailable ? 'solid' : 'dashed',
-      }}
     >
       <h3
         style={{
@@ -99,18 +92,6 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="project-card-demo-link"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '4px',
-              fontSize: '12px',
-              fontWeight: 600,
-              color: 'var(--accent)',
-              background: 'var(--accent-softer)',
-              padding: '5px 12px',
-              borderRadius: '6px',
-              textDecoration: 'none',
-            }}
           >
             {lang === 'ko' ? '웹 데모 열기 →' : 'Open web demo →'}
           </a>

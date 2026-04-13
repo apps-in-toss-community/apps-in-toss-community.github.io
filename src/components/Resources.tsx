@@ -72,14 +72,6 @@ export function Resources({ lang }: ResourcesProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="resource-link"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: 'var(--fg)',
-                fontSize: '14px',
-                textDecoration: 'none',
-              }}
             >
               <span>{r.icon}</span>
               {r.label[lang]}

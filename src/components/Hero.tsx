@@ -87,18 +87,6 @@ export function Hero({ lang }: HeroProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="hero-cta-primary"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            background: 'var(--accent)',
-            color: '#fff',
-            fontWeight: 600,
-            fontSize: '15px',
-            padding: '11px 24px',
-            borderRadius: '10px',
-            textDecoration: 'none',
-          }}
         >
           {t.ctaPrimary}
         </a>
@@ -108,19 +96,6 @@ export function Hero({ lang }: HeroProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="hero-cta-secondary"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            background: 'var(--card)',
-            color: 'var(--fg)',
-            fontWeight: 600,
-            fontSize: '15px',
-            padding: '11px 24px',
-            borderRadius: '10px',
-            border: '1px solid var(--border-strong)',
-            textDecoration: 'none',
-          }}
         >
           {t.ctaSecondary}
         </a>
