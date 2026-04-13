@@ -25,25 +25,28 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
 
   return (
     <article
+      className="project-card"
       style={{
-        background: 'var(--card)',
-        border: `1px solid ${isAvailable ? 'var(--border-strong)' : 'var(--border)'}`,
+        background: isAvailable ? 'var(--card)' : 'var(--card-wip)',
+        border: `1px solid ${isAvailable ? 'var(--border-strong)' : 'var(--border-wip)'}`,
         borderRadius: '14px',
-        padding: '20px 22px',
-        transition: 'border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease',
-        opacity: isAvailable ? 1 : 0.85,
+        transition: 'border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease, opacity 0.12s ease',
+        opacity: isAvailable ? 1 : 0.65,
+        borderStyle: isAvailable ? 'solid' : 'dashed',
       }}
       onMouseEnter={e => {
         const el = e.currentTarget;
         el.style.borderColor = 'var(--accent)';
         el.style.boxShadow = '0 4px 16px rgba(49,130,246,0.12)';
         el.style.transform = 'translateY(-2px)';
+        if (!isAvailable) el.style.opacity = '0.9';
       }}
       onMouseLeave={e => {
         const el = e.currentTarget;
-        el.style.borderColor = isAvailable ? 'var(--border-strong)' : 'var(--border)';
+        el.style.borderColor = isAvailable ? 'var(--border-strong)' : 'var(--border-wip)';
         el.style.boxShadow = 'none';
         el.style.transform = 'none';
+        if (!isAvailable) el.style.opacity = '0.65';
       }}
     >
       <h3
@@ -74,17 +77,18 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
             style={{
               display: 'inline-block',
               fontSize: '10px',
-              fontWeight: 600,
+              fontWeight: 700,
               fontFamily: 'inherit',
-              letterSpacing: '0.06em',
-              padding: '2px 8px',
+              letterSpacing: '0.08em',
+              padding: '3px 10px',
               borderRadius: '999px',
               background: 'var(--chip-wip-bg)',
               color: 'var(--chip-wip-fg)',
+              border: '1.5px solid var(--chip-wip-border)',
               textTransform: 'uppercase',
             }}
           >
-            WIP
+            Coming Soon
           </span>
         )}
       </h3>
