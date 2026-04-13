@@ -40,6 +40,7 @@ export function ProjectGrid({ lang }: ProjectGridProps) {
           {headings.available}
         </h2>
         <div
+          className="project-grid-gap"
           style={{
             display: 'grid',
             gap: '12px',
@@ -67,6 +68,7 @@ export function ProjectGrid({ lang }: ProjectGridProps) {
           {headings.comingSoon}
         </h2>
         <div
+          className="project-grid-gap"
           style={{
             display: 'grid',
             gap: '12px',

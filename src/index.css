@@ -14,6 +14,9 @@
     --chip-bg: #edf0f3;
     --chip-wip-bg: #fff4e0;
     --chip-wip-fg: #8c5000;
+    --chip-wip-border: #e8a030;
+    --card-wip: #fafafa;
+    --border-wip: #c9ced4;
     --code-bg: #191f28;
     --code-fg: #e5e8eb;
   }
@@ -32,6 +35,9 @@
       --chip-bg: #2e3440;
       --chip-wip-bg: #332200;
       --chip-wip-fg: #ffb84d;
+      --chip-wip-border: #c87a00;
+      --card-wip: #161b24;
+      --border-wip: #3a4050;
       --code-bg: #0d1117;
       --code-fg: #e5e8eb;
     }
@@ -70,5 +76,24 @@
     padding: 0;
     font-size: inherit;
     color: inherit;
+  }
+}
+
+/* ProjectCard responsive padding */
+.project-card {
+  padding: 24px;
+}
+
+@media (max-width: 640px) {
+  .project-card {
+    padding: 20px 18px;
+  }
+
+  .project-card p {
+    font-size: 13px;
+  }
+
+  .project-grid-gap {
+    gap: 16px !important;
   }
 }
