@@ -12,7 +12,7 @@
 import { readFile, mkdir, writeFile } from 'fs/promises';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { projects, repoUrl, type Project } from '../content/projects.js';
+import { projects, repoUrl, type Project } from '../content/projects';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -53,8 +53,8 @@ const STRINGS = {
 /** Read an MDX file as plain text, stripping frontmatter if present. */
 async function readMdx(relPath: string): Promise<string> {
   const content = await readFile(resolve(ROOT, relPath), 'utf-8');
-  // Strip YAML frontmatter (--- ... ---)
-  return content.replace(/^---[\s\S]*?---\s*/m, '').trim();
+  // Strip YAML frontmatter (must begin on line 1: --- ... ---)
+  return content.replace(/^---\n[\s\S]*?\n---\s*/, '').trim();
 }
 
 /** Format a project row for the markdown table. */
@@ -152,10 +152,8 @@ async function main(): Promise<void> {
   // Parse --out flag
   const args = process.argv.slice(2);
   const outIdx = args.indexOf('--out');
-  const outDir =
-    outIdx !== -1 && args[outIdx + 1]
-      ? resolve(args[outIdx + 1])
-      : resolve(ROOT, 'out', 'profile');
+  const customOut = outIdx !== -1 ? args[outIdx + 1] : undefined;
+  const outDir = customOut != null ? resolve(customOut) : resolve(ROOT, 'out', 'profile');
 
   await mkdir(outDir, { recursive: true });
 
