@@ -3,138 +3,144 @@
 ## 프로젝트 개요
 
 **apps-in-toss-community.github.io** — `apps-in-toss-community` GitHub organization의 landing page.
-`https://apps-in-toss-community.github.io/`로 배포되며, organization의 모든 오픈소스 프로젝트(available + coming soon)를 소개하고 각 프로젝트로 연결하는 허브 역할을 한다.
+`https://apps-in-toss-community.github.io/`로 배포되며, 모든 오픈소스 프로젝트를 소개하고 각 프로젝트로 연결하는 허브 역할을 한다.
+
+또한 `content/` 디렉토리가 org profile README의 **단일 진실 공급원(single source of truth)**이다.
+`scripts/sync-readme.ts`가 content를 읽어 `.github/profile/README.md`와 `README.en.md`를 생성하고, GitHub Action이 main에 push될 때 자동으로 `.github` 레포에 커밋한다.
 
 ## 기술 스택
 
-- **Static HTML** (no framework, no build step)
-- **Inline CSS** (별도 CSS 파일 없음)
-- **Vanilla JS** (언어 토글만 수행)
-- **GitHub Pages** (branch source: `main`, path: `/`)
+- **Vite** + **React 19** + **TypeScript**
+- **Tailwind CSS v4** (`@tailwindcss/vite` 플러그인)
+- **MDX** (`@mdx-js/rollup`) — content 섹션 (values, quickstart)
+- **vite-react-ssg** — 정적 사이트 사전 렌더링 (pre-rendering)
+- **react-router-dom v6** — vite-react-ssg가 v6을 요구하므로 고정 (v7로 업그레이드 시 vite-react-ssg 마이그레이션 필요)
 
-빌드 과정이 없다. `index.html`을 직접 편집하고 push하면 GitHub Pages가 몇 초 내 배포한다.
+## 명령어
+
+```bash
+pnpm dev            # 로컬 dev 서버
+pnpm build          # dist/ 에 사전 렌더링 (index.html, ko/index.html, en/index.html)
+pnpm typecheck      # tsc --noEmit
+pnpm sync:readme    # out/profile/README.md + README.en.md 생성
+```
 
 ## 파일 구조
 
 ```
 .
-├── index.html          # Landing 페이지 (유일한 entry)
-├── README.md           # 레포 설명
-├── CLAUDE.md           # 이 파일
-├── TODO.md             # 후속 작업 목록
-└── .gitignore
+├── content/
+│   ├── projects.ts             # 프로젝트 메타데이터 (id, name, repo, status, description{ko,en})
+│   ├── values.ko.mdx           # "이런 것들을 할 수 있어요" 불릿 리스트
+│   ├── values.en.mdx
+│   ├── quickstart.ko.mdx       # devtools 설치/설정 코드 스니펫
+│   └── quickstart.en.mdx
+├── scripts/
+│   └── sync-readme.ts          # org profile README 생성기
+├── src/
+│   ├── components/             # Layout, Header, Footer, Hero, LangBanner, ValueList,
+│   │                           #   ProjectCard, ProjectGrid, QuickStart, Resources
+│   ├── pages/                  # HomeKo, HomeEn
+│   ├── routes.tsx              # vite-react-ssg 라우트 정의
+│   ├── main.tsx                # 앱 진입점
+│   └── index.css               # Tailwind 기본 임포트
+├── .github/
+│   └── workflows/
+│       ├── deploy-pages.yml    # GitHub Pages 배포 (build → upload → deploy)
+│       └── sync-org-readme.yml # org .github 레포에 README 동기화
+├── .nvmrc                      # Node 버전 (24)
+├── vite.config.ts
+├── tsconfig.json
+└── package.json
 ```
 
-## i18n (한국어 / English)
+## Content 규칙
 
-페이지는 **한국어와 영어를 동시에 포함**하고, 우측 상단 토글 버튼으로 전환한다.
+### `content/projects.ts`
 
-- 기본 언어: 브라우저 `navigator.language`가 `ko`로 시작하면 한국어, 아니면 영어
-- 사용자가 토글한 뒤의 선택은 `localStorage`의 `ait-landing-lang` 키에 저장됨
-- CSS는 `html[data-lang="ko"]` / `html[data-lang="en"]` 선택자로 `.ko` / `.en` 요소의 노출을 제어
+프로젝트 메타데이터를 정의한다. `status: 'available' | 'coming-soon'`으로 구분.
 
-### 새 문자열 추가 규칙
+새 프로젝트 추가 시:
+1. `projects` 배열에 항목 추가 (`ko`/`en` 설명 모두 작성)
+2. `pnpm build`로 사이트 빌드 확인
+3. `pnpm sync:readme`로 README 생성 확인
 
-모든 텍스트 블록은 **반드시 한국어/영어 둘 다** 작성하고, 각 블록에 `lang` 속성도 붙인다.
+### MDX 파일
 
-```html
-<p class="ko" lang="ko">한국어 문장.</p>
-<p class="en" lang="en">English sentence.</p>
-```
+`content/values.*.mdx`와 `content/quickstart.*.mdx`는 순수 Markdown으로 작성한다.
+Frontmatter가 있으면 `sync-readme.ts`가 자동으로 제거한다.
 
-- `lang` 속성은 스크린 리더가 정확한 언어로 발음하는 데 필요하다
-- 링크 내부 텍스트도 마찬가지로 분리 (`<span class="ko" lang="ko">...</span><span class="en" lang="en">...</span>`)
-- 숫자, 제품명, 코드, 브랜드명 등 언어에 무관한 내용은 공통 래퍼 없이 그대로 사용 (footer의 brand-only 문장이 대표적)
-- 한 쪽 언어에만 적는 것은 허용되지 않음 (토글 시 빈 공간이 생김)
+- `values.*.mdx`: 불릿 리스트 (- 🛠️ **...** — ...)
+- `quickstart.*.mdx`: 설명 텍스트 + bash/ts 코드 블록
 
-## Information Architecture
+## i18n / 라우팅
 
-페이지 섹션 순서 (둘 다 유지):
+| 경로 | 설명 |
+|---|---|
+| `/` | 기본 랜딩 (LangBanner로 `/ko/` 또는 `/en/` 안내) |
+| `/ko/` | 한국어 전용 페이지 |
+| `/en/` | 영어 전용 페이지 |
 
-1. **Hero** — 프로젝트 이름 + 한 줄 tagline
-2. **What we offer / 이런 것들을 할 수 있어요** — 5개 bullet (리더가 얻을 수 있는 것)
-3. **Available Now** — 현재 사용 가능한 프로젝트 카드
-4. **Getting started with devtools / devtools로 시작하기** — devtools 설치·설정 코드 스니펫 (devtools-specific 임을 명시)
-5. **Coming Soon** — 계획 단계 프로젝트 카드 (WIP chip)
-6. **Resources** — 외부 링크
-7. **Footer** — 저작권 / disclaimer
+### LangBanner
 
-**섹션 이름 원칙**:
-- 조직 미션을 설명하려 하지 말고, **리더가 얻을 수 있는 가치**로 표현한다 ("What we're building" ❌ / "What we offer" ✅)
-- 특정 프로젝트에 귀속되는 섹션(Quick start 등)은 **이름에 프로젝트 명시** ("Getting started with devtools"). 단순히 "Quick start"라고 하면 org 전체로 오해됨
+`/`에 접속하면 `navigator.language`를 감지해 `/ko/` 또는 `/en/`으로 이동하도록 안내하는 배너를 표시한다.
+사용자가 토글하면 `localStorage`의 `ait-landing-lang` 키에 저장한다.
 
-## 디자인 원칙
+## Pre-rendering (vite-react-ssg)
 
-- **순수 정적 HTML**: 프레임워크/빌드 도구 없이 유지보수 비용 최소화
-- **미니멀 / 중립**: 회색 톤 + 한 가지 accent, 단 hero는 충분히 크게
-- **시맨틱 HTML**: 카드는 `<article>` + `<h3>`. 프로젝트 제목은 문서 아웃라인에 포함되어야 함
-- **중첩 `<a>` 금지**: HTML 스펙 위반 + 예측 불가능한 렌더링. 카드 안에 여러 링크가 필요하면 카드 컨테이너는 `<a>`가 아니어야 함 (본 프로젝트는 `<article>`)
-- **모바일 대응**: `max-width: 760px` + 여유 있는 패딩
-- **토스 색상 언어 존중**: `#3182f6` accent, `#191f28` text 등 앱인토스 미니앱 개발자에게 친숙한 팔레트
+`pnpm build`는 `vite-react-ssg build`를 실행한다. 라우트 정의(`src/routes.tsx`)에 따라 아래 파일들을 생성한다:
 
-## 접근성
+- `dist/index.html`
+- `dist/ko/index.html`
+- `dist/en/index.html`
 
-- 각 언어 블록에는 `lang="ko"` / `lang="en"` 속성을 반드시 붙인다 (스크린 리더 발음 정확성)
-- 언어 토글 버튼은 JS로 `aria-label`을 현재 언어에 맞게 업데이트한다 (예: 한국어일 때 `Switch to English`)
-- 카드 제목은 `<h3>`로 작성하여 문서 아웃라인에 포함
-- 섹션은 `<section aria-labelledby="...">` + `<h2 id="...">` 연결
-- 포커스 가능한 요소에는 `:focus-visible` 스타일
+**react-router-dom이 v6에 고정된 이유**: `vite-react-ssg@0.9.x`는 react-router-dom v6 API를 사용한다.
+v7로 올리려면 vite-react-ssg를 v7 호환 버전으로 함께 업그레이드해야 한다 (TODO.md 참고).
 
-## 새 프로젝트 추가 절차
+## 배포 플로우
 
-1. 프로젝트가 "Available"인지 "Coming Soon"인지 결정
-2. 해당 섹션의 `.grid` 안에 `<article class="card">` 블록 추가
-   - `<h3>` 안에 GitHub 링크 `<a>` 하나
-   - Coming Soon은 `<span class="chip wip">WIP</span>` 추가
-   - `<p class="desc ko" lang="ko">` + `<p class="desc en" lang="en">` 양쪽 반드시 작성
-   - 웹 데모가 있으면 `<a class="demo">` 추가 (한/영 `<span lang="...">` 포함)
-3. commit + push → GitHub Pages 자동 배포 (약 30초)
+### 사이트 자동 배포
 
-예시:
+`main`에 push → `.github/workflows/deploy-pages.yml` 실행:
+1. `pnpm install && pnpm build`
+2. `dist/`를 GitHub Pages artifact로 업로드
+3. GitHub Pages에 배포
 
-```html
-<article class="card">
-  <h3>
-    <a href="https://github.com/apps-in-toss-community/new-project">new-project</a>
-    <span class="chip wip">WIP</span>
-  </h3>
-  <p class="desc ko" lang="ko">한국어 설명.</p>
-  <p class="desc en" lang="en">English description.</p>
-</article>
-```
+### Org profile README 자동 동기화
 
-## 배포
+`main`에 push하고 `content/**` 또는 `scripts/sync-readme.ts`가 변경된 경우
+→ `.github/workflows/sync-org-readme.yml` 실행:
+1. 이 레포와 `.github` 레포를 함께 체크아웃
+2. `pnpm sync:readme --out ../dotgithub/profile`
+3. 변경이 있으면 `.github` 레포에 커밋·push
 
-GitHub Pages 설정: **Settings → Pages**
-- Source: Deploy from a branch
-- Branch: `main` / `/` (root)
-- 커스텀 도메인: 설정 없음 (기본 `apps-in-toss-community.github.io` 사용)
+필요한 시크릿: `SYNC_PAT` (organization secret, `.github` 레포 write 권한 있는 PAT)
 
-Push to main → 수 초 내 `https://apps-in-toss-community.github.io/`에 반영.
+## 새 프로젝트 추가 방법
 
-## 로컬 미리보기
+1. `content/projects.ts`의 `projects` 배열에 항목 추가
+   - `status: 'available'`이면 Available Now 섹션에 표시
+   - `status: 'coming-soon'`이면 Coming Soon 섹션에 표시
+   - `demoUrl`이 있으면 README 테이블과 ProjectCard에 데모 링크 추가
+2. `pnpm typecheck && pnpm build`로 확인
+3. `pnpm sync:readme`로 README 생성 확인 후 `out/profile/`과 비교
+4. commit & push → 사이트 + org README 자동 반영
 
-빌드가 없으므로 파일을 그대로 열면 된다:
+## 카피(copy) 수정 방법
 
-```bash
-open index.html
-# 또는 간단한 정적 서버
-python3 -m http.server 8000
-```
+| 수정 대상 | 위치 |
+|---|---|
+| 프로젝트 설명 | `content/projects.ts` |
+| "이런 것들을 할 수 있어요" 불릿 | `content/values.ko.mdx` |
+| "What we offer" 불릿 | `content/values.en.mdx` |
+| devtools 시작하기 섹션 | `content/quickstart.ko.mdx` / `content/quickstart.en.mdx` |
+| tagline, 섹션 제목, Resources 링크 | `scripts/sync-readme.ts`의 `STRINGS` 상수 + 각 컴포넌트 |
 
-언어 토글은 `localStorage`를 쓰므로 `file://` 스킴에서도 정상 동작한다 (브라우저에 따라 `localStorage`가 막혀 있으면 세션 동안만 유지됨).
+## 관련 레포
 
-## 관계된 레포
-
-- [`.github`](https://github.com/apps-in-toss-community/.github) — organization profile README (`github.com/apps-in-toss-community`에 표시)
+- [`.github`](https://github.com/apps-in-toss-community/.github) — org profile README 보관
 - [`devtools`](https://github.com/apps-in-toss-community/devtools) — mock 라이브러리
-- [`sdk-example`](https://github.com/apps-in-toss-community/sdk-example) — 인터랙티브 SDK 예제 앱 (이 landing에서 데모 링크)
+- [`sdk-example`](https://github.com/apps-in-toss-community/sdk-example) — 인터랙티브 SDK 예제 앱
 - [`polyfill`](https://github.com/apps-in-toss-community/polyfill) — WIP, 웹 표준 API polyfill
 - [`docs`](https://github.com/apps-in-toss-community/docs) — WIP, 가이드/레퍼런스 문서
 - [`claude-code-plugin`](https://github.com/apps-in-toss-community/claude-code-plugin) — WIP, Claude Code 통합
-
-이 landing은 모든 공식 프로젝트로 향하는 허브이므로, 새 레포가 추가되거나 상태가 변하면 반드시 `index.html`에 반영한다.
-
-## TODO
-
-후속 작업은 [TODO.md](./TODO.md) 참고.
