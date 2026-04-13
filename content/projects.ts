@@ -48,8 +48,8 @@ export const projects: Project[] = [
     repo: 'docs',
     status: 'coming-soon',
     description: {
-      ko: '공식 문서를 기반으로 더 **세련되고 친절하게** 재구성한 가이드/레퍼런스 문서 세트.',
-      en: 'A **cleaner, friendlier** set of guides and references, built on top of the official documentation.',
+      ko: '앱인토스 공식 문서를 기반으로 더 **세련되고 친절하게** 재구성한 커뮤니티 가이드/레퍼런스.',
+      en: 'A **cleaner, friendlier** community-maintained set of guides and references, built on top of the Apps in Toss official documentation.',
     },
   },
   {
@@ -58,8 +58,8 @@ export const projects: Project[] = [
     repo: 'claude-code-plugin',
     status: 'coming-soon',
     description: {
-      ko: '위 도구들을 엮어 **Claude Code 안에서 미니앱을 생성·개발·테스트·배포**하는 공식 플러그인.',
-      en: 'The official plugin that ties everything together — **scaffold, develop, test, and publish mini-apps from inside Claude Code**.',
+      ko: '위 도구들을 엮어 **Claude Code 안에서 미니앱을 생성·개발·테스트·배포**할 수 있게 해주는 커뮤니티 플러그인.',
+      en: 'A community plugin that ties everything together — **scaffold, develop, test, and publish mini-apps from inside Claude Code**.',
     },
   },
 ];
