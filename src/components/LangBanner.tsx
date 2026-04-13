@@ -31,11 +31,14 @@ function setDismissed(): void {
 }
 
 export function LangBanner() {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [pageLang, setPageLang] = useState<Lang>('ko');
   const [browserLang, setBrowserLang] = useState<Lang>('ko');
 
   useEffect(() => {
+    setMounted(true);
+
     const pl = detectPageLang(window.location.pathname);
     const bl = detectBrowserLang();
     setPageLang(pl);
@@ -51,7 +54,9 @@ export function LangBanner() {
     setVisible(false);
   }
 
-  if (!visible) return null;
+  // During SSR and first client render, return null to avoid hydration mismatch.
+  // Navigator/localStorage are not available in SSR context.
+  if (!mounted || !visible) return null;
 
   const switchTo: Lang = browserLang;
   const switchHref = switchTo === 'en' ? '/en/' : '/ko/';
