@@ -52,6 +52,23 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+function InlineCode({ children }: { children?: React.ReactNode }) {
+  return (
+    <code
+      style={{
+        fontFamily: 'ui-monospace, "SF Mono", Menlo, "Fira Code", monospace',
+        fontSize: '0.875em',
+        background: 'var(--code-bg)',
+        color: 'var(--code-fg)',
+        padding: '1px 5px',
+        borderRadius: '4px',
+      }}
+    >
+      {children}
+    </code>
+  );
+}
+
 function CodeBlock({
   children,
   className,
@@ -59,8 +76,14 @@ function CodeBlock({
   children?: React.ReactNode;
   className?: string;
 }) {
+  // Inline code (no className) must not render a block-level <div> inside a <p>,
+  // as that produces invalid HTML and causes React hydration mismatches (#418).
+  if (!className) {
+    return <InlineCode>{children}</InlineCode>;
+  }
+
   const text = typeof children === 'string' ? children.trimEnd() : '';
-  const lang = className?.replace('language-', '') ?? '';
+  const lang = className.replace('language-', '');
 
   return (
     <div style={{ position: 'relative', marginTop: '10px', marginBottom: '10px' }}>
