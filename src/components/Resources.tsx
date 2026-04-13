@@ -66,8 +66,12 @@ export function Resources({ lang }: ResourcesProps) {
       >
         {resources.map(r => (
           <li key={r.href}>
+            {/* target="_blank" + rel because all resource links are external */}
             <a
               href={r.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="resource-link"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -75,10 +79,7 @@ export function Resources({ lang }: ResourcesProps) {
                 color: 'var(--fg)',
                 fontSize: '14px',
                 textDecoration: 'none',
-                transition: 'color 0.1s ease',
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--accent)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'var(--fg)'; }}
             >
               <span>{r.icon}</span>
               {r.label[lang]}

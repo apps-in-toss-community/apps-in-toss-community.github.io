@@ -26,8 +26,14 @@ export function Header({ lang }: HeaderProps) {
           justifyContent: 'space-between',
         }}
       >
+        {/*
+         * Deliberately using <a> instead of react-router's <Link>: a full-page
+         * reload is desirable here so each route's SSG-baked <title>,
+         * <html lang>, and <link rel="canonical"> take effect immediately.
+         */}
         <a
           href={lang === 'en' ? '/en/' : '/ko/'}
+          className="lang-switch-link"
           style={{
             fontWeight: 700,
             fontSize: '15px',
@@ -50,9 +56,15 @@ export function Header({ lang }: HeaderProps) {
             padding: '3px',
           }}
         >
+          {/*
+           * Deliberately using <a> instead of react-router's <Link>: a full-page
+           * reload is desirable here so each route's SSG-baked <title>,
+           * <html lang>, and <link rel="canonical"> take effect immediately.
+           */}
           <a
             href="/ko/"
             aria-current={lang === 'ko' ? 'page' : undefined}
+            className="lang-switch-link"
             style={{
               fontSize: '12px',
               fontWeight: lang === 'ko' ? 600 : 400,
@@ -70,6 +82,7 @@ export function Header({ lang }: HeaderProps) {
           <a
             href="/en/"
             aria-current={lang === 'en' ? 'page' : undefined}
+            className="lang-switch-link"
             style={{
               fontSize: '12px',
               fontWeight: lang === 'en' ? 600 : 400,

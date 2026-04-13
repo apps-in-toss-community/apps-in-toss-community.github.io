@@ -25,28 +25,13 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
 
   return (
     <article
-      className="project-card"
+      className={`project-card${isAvailable ? '' : ' project-card--wip'}`}
       style={{
         background: isAvailable ? 'var(--card)' : 'var(--card-wip)',
         border: `1px solid ${isAvailable ? 'var(--border-strong)' : 'var(--border-wip)'}`,
         borderRadius: '14px',
-        transition: 'border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease, opacity 0.12s ease',
         opacity: isAvailable ? 1 : 0.65,
         borderStyle: isAvailable ? 'solid' : 'dashed',
-      }}
-      onMouseEnter={e => {
-        const el = e.currentTarget;
-        el.style.borderColor = 'var(--accent)';
-        el.style.boxShadow = '0 4px 16px rgba(49,130,246,0.12)';
-        el.style.transform = 'translateY(-2px)';
-        if (!isAvailable) el.style.opacity = '0.9';
-      }}
-      onMouseLeave={e => {
-        const el = e.currentTarget;
-        el.style.borderColor = isAvailable ? 'var(--border-strong)' : 'var(--border-wip)';
-        el.style.boxShadow = 'none';
-        el.style.transform = 'none';
-        if (!isAvailable) el.style.opacity = '0.65';
       }}
     >
       <h3
@@ -61,14 +46,16 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
           flexWrap: 'wrap',
         }}
       >
+        {/* target="_blank" + rel because repo links go to github.com */}
         <a
           href={repoUrl(project.repo)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-card-name-link"
           style={{
             color: 'var(--fg)',
             textDecoration: 'none',
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.textDecoration = 'underline'; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.textDecoration = 'none'; }}
         >
           {project.name}
         </a>
@@ -106,8 +93,12 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
 
       {project.demoUrl != null && (
         <div style={{ marginTop: '12px' }}>
+          {/* target="_blank" + rel because demo links are external */}
           <a
             href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card-demo-link"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -115,14 +106,11 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
               fontSize: '12px',
               fontWeight: 600,
               color: 'var(--accent)',
-              background: 'rgba(49,130,246,0.08)',
+              background: 'var(--accent-softer)',
               padding: '5px 12px',
               borderRadius: '6px',
               textDecoration: 'none',
-              transition: 'background 0.1s ease',
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(49,130,246,0.16)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(49,130,246,0.08)'; }}
           >
             {lang === 'ko' ? '웹 데모 열기 →' : 'Open web demo →'}
           </a>

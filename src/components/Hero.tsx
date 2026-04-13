@@ -38,7 +38,7 @@ export function Hero({ lang }: HeroProps) {
           fontWeight: 600,
           letterSpacing: '0.08em',
           color: 'var(--accent)',
-          background: 'rgba(49, 130, 246, 0.1)',
+          background: 'var(--accent-soft)',
           padding: '4px 12px',
           borderRadius: '999px',
           marginBottom: '24px',
@@ -81,8 +81,12 @@ export function Hero({ lang }: HeroProps) {
           flexWrap: 'wrap',
         }}
       >
+        {/* target="_blank" + rel because this is an external URL */}
         <a
           href="https://apps-in-toss-community.github.io/sdk-example/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero-cta-primary"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -94,21 +98,16 @@ export function Hero({ lang }: HeroProps) {
             padding: '11px 24px',
             borderRadius: '10px',
             textDecoration: 'none',
-            transition: 'background 0.15s ease, transform 0.1s ease',
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLAnchorElement).style.background = 'var(--accent-hover)';
-            (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-1px)';
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLAnchorElement).style.background = 'var(--accent)';
-            (e.currentTarget as HTMLAnchorElement).style.transform = 'none';
           }}
         >
           {t.ctaPrimary}
         </a>
+        {/* target="_blank" + rel because this is an external GitHub URL */}
         <a
           href="https://github.com/apps-in-toss-community"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero-cta-secondary"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -121,15 +120,6 @@ export function Hero({ lang }: HeroProps) {
             borderRadius: '10px',
             border: '1px solid var(--border-strong)',
             textDecoration: 'none',
-            transition: 'border-color 0.15s ease, transform 0.1s ease',
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--accent)';
-            (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-1px)';
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--border-strong)';
-            (e.currentTarget as HTMLAnchorElement).style.transform = 'none';
           }}
         >
           {t.ctaSecondary}

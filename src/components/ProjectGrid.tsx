@@ -39,11 +39,11 @@ export function ProjectGrid({ lang }: ProjectGridProps) {
         >
           {headings.available}
         </h2>
+        {/* gap is set by .project-grid-gap in index.css — no inline gap needed */}
         <div
           className="project-grid-gap"
           style={{
             display: 'grid',
-            gap: '12px',
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 420px), 1fr))',
           }}
         >
@@ -67,11 +67,11 @@ export function ProjectGrid({ lang }: ProjectGridProps) {
         >
           {headings.comingSoon}
         </h2>
+        {/* gap is set by .project-grid-gap in index.css — no inline gap needed */}
         <div
           className="project-grid-gap"
           style={{
             display: 'grid',
-            gap: '12px',
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 420px), 1fr))',
           }}
         >
