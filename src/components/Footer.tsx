@@ -15,6 +15,8 @@ export function Footer() {
         © apps-in-toss-community —{' '}
         <a
           href="https://github.com/apps-in-toss-community"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{ color: 'inherit', textDecoration: 'underline' }}
         >
           community-driven
