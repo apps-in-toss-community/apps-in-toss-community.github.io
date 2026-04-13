@@ -9,10 +9,17 @@ on:
       - '.github/workflows/sync-org-readme.yml'
   workflow_dispatch:
 
+concurrency:
+  group: sync-org-readme
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+      - name: Verify SYNC_PAT is set
+        run: test -n "${{ secrets.SYNC_PAT }}" || { echo "::error::SYNC_PAT secret not set"; exit 1; }
+
       - uses: actions/checkout@v4
         with:
           path: source
