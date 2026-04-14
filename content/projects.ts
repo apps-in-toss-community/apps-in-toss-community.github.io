@@ -53,6 +53,16 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'apps-in-toss-oidc-bridge',
+    name: 'apps-in-toss-oidc-bridge',
+    repo: 'apps-in-toss-oidc-bridge',
+    status: 'coming-soon',
+    description: {
+      ko: '토스 로그인을 **표준 OIDC**와 **Firebase Custom Token**으로 중계하는 오픈소스 서버. Supabase Auth, Firebase Auth, Auth0 등 어디든 바로 연결할 수 있어요. (공용 인스턴스, rate-limited, best-effort)',
+      en: 'An open-source server that bridges Toss login into **standard OIDC** and **Firebase Custom Tokens** — plug straight into Supabase Auth, Firebase Auth, Auth0, or any OIDC-compatible IdP. Public instance available (rate-limited, best-effort).',
+    },
+  },
+  {
     id: 'claude-code-plugin',
     name: 'claude-code-plugin',
     repo: 'claude-code-plugin',
