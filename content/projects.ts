@@ -53,13 +53,23 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'apps-in-toss-oidc-bridge',
-    name: 'apps-in-toss-oidc-bridge',
-    repo: 'apps-in-toss-oidc-bridge',
+    id: 'oidc-bridge',
+    name: 'oidc-bridge',
+    repo: 'oidc-bridge',
     status: 'coming-soon',
     description: {
       ko: '토스 로그인을 **표준 OIDC**와 **Firebase Custom Token**으로 중계하는 오픈소스 서버. Supabase Auth, Firebase Auth, Auth0 등 어디든 바로 연결할 수 있어요. (공용 인스턴스, rate-limited, best-effort)',
       en: 'An open-source server that bridges Toss login into **standard OIDC** and **Firebase Custom Tokens** — plug straight into Supabase Auth, Firebase Auth, Auth0, or any OIDC-compatible IdP. Public instance available (rate-limited, best-effort).',
+    },
+  },
+  {
+    id: 'console-cli',
+    name: 'console-cli',
+    repo: 'console-cli',
+    status: 'coming-soon',
+    description: {
+      ko: '앱인토스 콘솔을 **CLI**와 **MCP**로 자동화. 최초 로그인만 브라우저로 하고, 이후엔 headless 브라우저로 빌드·배포·릴리스를 커맨드 한 줄 또는 Claude 명령으로 처리할 수 있어요.',
+      en: 'CLI and MCP server for the Apps in Toss console — log in once in a browser, then drive builds, deploys, and releases from your shell or from Claude via headless automation.',
     },
   },
   {
