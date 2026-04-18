@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import QuickStartKo from '../../content/quickstart.ko.mdx';
+import { useState } from 'react';
 import QuickStartEn from '../../content/quickstart.en.mdx';
+import QuickStartKo from '../../content/quickstart.ko.mdx';
 
 type Lang = 'ko' | 'en';
 
@@ -69,13 +69,7 @@ function InlineCode({ children }: { children?: React.ReactNode }) {
   );
 }
 
-function CodeBlock({
-  children,
-  className,
-}: {
-  children?: React.ReactNode;
-  className?: string;
-}) {
+function CodeBlock({ children, className }: { children?: React.ReactNode; className?: string }) {
   // Inline code (no className) must not render a block-level <div> inside a <p>,
   // as that produces invalid HTML and causes React hydration mismatches (#418).
   if (!className) {

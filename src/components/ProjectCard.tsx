@@ -14,9 +14,7 @@ interface ProjectCardProps {
  */
 function renderDescription(text: string): React.ReactNode {
   const parts = text.split(/`([^`]+)`/);
-  return parts.map((part, i) =>
-    i % 2 === 1 ? <code key={i}>{part}</code> : part
-  );
+  return parts.map((part, i) => (i % 2 === 1 ? <code key={i}>{part}</code> : part));
 }
 
 export function ProjectCard({ project, lang }: ProjectCardProps) {
@@ -24,9 +22,7 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
   const description = project.description[lang];
 
   return (
-    <article
-      className={`project-card${isAvailable ? '' : ' project-card--wip'}`}
-    >
+    <article className={`project-card${isAvailable ? '' : ' project-card--wip'}`}>
       <h3
         style={{
           margin: '0 0 8px',

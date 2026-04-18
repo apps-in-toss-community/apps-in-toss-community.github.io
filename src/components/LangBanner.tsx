@@ -64,10 +64,7 @@ export function LangBanner() {
   // `message` intentionally shows the OPPOSITE language context:
   // e.g. "This page is in Korean." appears on the Korean page when the
   // browser language is English, prompting the user to switch.
-  const message =
-    pageLang === 'ko'
-      ? 'This page is in Korean.'
-      : '이 페이지는 영어로 제공됩니다.';
+  const message = pageLang === 'ko' ? 'This page is in Korean.' : '이 페이지는 영어로 제공됩니다.';
 
   return (
     // <section> with aria-label avoids conflicting with the implicit

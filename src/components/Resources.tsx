@@ -64,15 +64,10 @@ export function Resources({ lang }: ResourcesProps) {
           gap: '8px',
         }}
       >
-        {resources.map(r => (
+        {resources.map((r) => (
           <li key={r.href}>
             {/* target="_blank" + rel because all resource links are external */}
-            <a
-              href={r.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="resource-link"
-            >
+            <a href={r.href} target="_blank" rel="noopener noreferrer" className="resource-link">
               <span>{r.icon}</span>
               {r.label[lang]}
             </a>

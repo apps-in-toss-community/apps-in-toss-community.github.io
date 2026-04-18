@@ -1,11 +1,11 @@
 import { Head } from 'vite-react-ssg';
+import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import { ValueList } from '../components/ValueList';
 import { ProjectGrid } from '../components/ProjectGrid';
 import { QuickStart } from '../components/QuickStart';
 import { Resources } from '../components/Resources';
-import { Footer } from '../components/Footer';
+import { ValueList } from '../components/ValueList';
 
 const LANG = 'en' as const;
 const TITLE = 'apps-in-toss-community — The most convenient way to build Apps in Toss mini-apps';
