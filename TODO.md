@@ -17,6 +17,14 @@
 - [ ] Add OpenGraph/Twitter meta tags for social sharing
 - [ ] Add favicon
 - [ ] Accessibility audit (heading hierarchy, focus rings, contrast)
+- [ ] Clean up Biome rules currently disabled in `biome.json`
+  - Biome is the org-wide standard (see umbrella `../CLAUDE.md`). These are off only because existing code predates adoption.
+  - [ ] `suspicious/noArrayIndexKey` — `src/components/ProjectCard.tsx:17` (list render). Derive a stable key from the item.
+  - [ ] `a11y/useButtonType` — 2 call sites using `<button>` without explicit `type`:
+    - `src/components/LangBanner.tsx:104`
+    - `src/components/QuickStart.tsx:31`
+    - Fix: add `type="button"` (default is `submit` inside a `<form>`, which is a common footgun).
+  - [ ] After both are fixed, remove the two off overrides from `biome.json` and confirm `pnpm lint` passes clean.
 
 ## Backlog
 - [ ] Dark mode manual toggle (currently auto via `prefers-color-scheme`)

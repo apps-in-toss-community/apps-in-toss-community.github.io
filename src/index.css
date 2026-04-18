@@ -36,8 +36,8 @@
       --accent: #4d9cf8;
       --accent-hover: #3182f6;
       --accent-soft: rgba(77, 156, 248, 0.14);
-      --accent-softer: rgba(77, 156, 248, 0.10);
-      --accent-soft-strong: rgba(77, 156, 248, 0.20);
+      --accent-softer: rgba(77, 156, 248, 0.1);
+      --accent-soft-strong: rgba(77, 156, 248, 0.2);
       --chip-bg: #2e3440;
       --chip-wip-bg: #332200;
       --chip-wip-fg: #ffb84d;
@@ -50,7 +50,9 @@
   }
 
   html {
-    font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Noto Sans KR", "Segoe UI", sans-serif;
+    font-family:
+      "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Noto Sans KR",
+      "Segoe UI", sans-serif;
     background-color: var(--bg);
     color: var(--fg);
     -webkit-font-smoothing: antialiased;
@@ -127,7 +129,9 @@
   padding: 11px 24px;
   border-radius: 10px;
   text-decoration: none;
-  transition: background 0.15s ease, transform 0.1s ease;
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease;
 }
 
 .hero-cta-primary:hover {
@@ -153,7 +157,9 @@
   border-radius: 10px;
   border: 1px solid var(--border-strong);
   text-decoration: none;
-  transition: border-color 0.15s ease, transform 0.1s ease;
+  transition:
+    border-color 0.15s ease,
+    transform 0.1s ease;
 }
 
 .hero-cta-secondary:hover {
@@ -174,7 +180,11 @@
   background: var(--card);
   border: 1px solid var(--border-strong);
   border-radius: 14px;
-  transition: border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease, opacity 0.12s ease;
+  transition:
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    transform 0.12s ease,
+    opacity 0.12s ease;
 }
 
 .project-card--wip {

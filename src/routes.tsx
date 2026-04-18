@@ -1,7 +1,7 @@
 import type { RouteRecord } from 'vite-react-ssg';
 import { Layout } from './components/Layout';
-import { HomeKo } from './pages/HomeKo';
 import { HomeEn } from './pages/HomeEn';
+import { HomeKo } from './pages/HomeKo';
 
 export const routes: RouteRecord[] = [
   {

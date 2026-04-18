@@ -1,6 +1,6 @@
 import { MDXProvider } from '@mdx-js/react';
-import ValuesKo from '../../content/values.ko.mdx';
 import ValuesEn from '../../content/values.en.mdx';
+import ValuesKo from '../../content/values.ko.mdx';
 
 type Lang = 'ko' | 'en';
 

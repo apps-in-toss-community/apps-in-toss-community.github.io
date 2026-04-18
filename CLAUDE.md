@@ -25,6 +25,7 @@
 - **MDX** (`@mdx-js/rollup`) — content 섹션 (values, quickstart)
 - **vite-react-ssg** — 정적 사이트 사전 렌더링 (pre-rendering)
 - **react-router-dom v6** — vite-react-ssg가 v6을 요구하므로 고정 (v7로 업그레이드 시 vite-react-ssg 마이그레이션 필요)
+- **Biome** — lint + formatter (조직 표준). 기존 코드 맥락상 `noArrayIndexKey`, `useButtonType`는 우선 off, 후속 PR에서 개선.
 
 ## 명령어
 

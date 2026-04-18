@@ -9,10 +9,10 @@
  *   pnpm sync:readme --out /path/to/profile  # custom output dir
  */
 
-import { readFile, mkdir, writeFile } from 'fs/promises';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { projects, repoUrl, type Project } from '../content/projects';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { type Project, projects, repoUrl } from '../content/projects';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -141,7 +141,7 @@ async function buildReadme(lang: 'ko' | 'en'): Promise<string> {
     s.resources.map((r) => `- ${r}`).join('\n'),
   ];
 
-  return sections.join('\n') + '\n';
+  return `${sections.join('\n')}\n`;
 }
 
 // ---------------------------------------------------------------------------
@@ -157,10 +157,7 @@ async function main(): Promise<void> {
 
   await mkdir(outDir, { recursive: true });
 
-  const [koReadme, enReadme] = await Promise.all([
-    buildReadme('ko'),
-    buildReadme('en'),
-  ]);
+  const [koReadme, enReadme] = await Promise.all([buildReadme('ko'), buildReadme('en')]);
 
   await Promise.all([
     writeFile(resolve(outDir, 'README.md'), koReadme, 'utf-8'),

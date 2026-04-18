@@ -14,8 +14,8 @@ const sectionHeadings = {
 
 export function ProjectGrid({ lang }: ProjectGridProps) {
   const headings = sectionHeadings[lang];
-  const available = projects.filter(p => p.status === 'available');
-  const comingSoon = projects.filter(p => p.status === 'coming-soon');
+  const available = projects.filter((p) => p.status === 'available');
+  const comingSoon = projects.filter((p) => p.status === 'coming-soon');
 
   return (
     <div
@@ -47,7 +47,7 @@ export function ProjectGrid({ lang }: ProjectGridProps) {
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 420px), 1fr))',
           }}
         >
-          {available.map(project => (
+          {available.map((project) => (
             <ProjectCard key={project.id} project={project} lang={lang} />
           ))}
         </div>
@@ -75,7 +75,7 @@ export function ProjectGrid({ lang }: ProjectGridProps) {
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 420px), 1fr))',
           }}
         >
-          {comingSoon.map(project => (
+          {comingSoon.map((project) => (
             <ProjectCard key={project.id} project={project} lang={lang} />
           ))}
         </div>
