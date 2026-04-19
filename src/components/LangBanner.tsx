@@ -102,6 +102,7 @@ export function LangBanner() {
         {switchLabel} →
       </a>
       <button
+        type="button"
         onClick={dismiss}
         aria-label="Dismiss language banner"
         style={{

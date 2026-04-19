@@ -22,11 +22,7 @@
         "noNonNullAssertion": "off"
       },
       "suspicious": {
-        "noExplicitAny": "error",
-        "noArrayIndexKey": "off"
-      },
-      "a11y": {
-        "useButtonType": "off"
+        "noExplicitAny": "error"
       }
     }
   },

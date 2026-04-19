@@ -29,6 +29,7 @@ function CopyButton({ text }: { text: string }) {
 
   return (
     <button
+      type="button"
       onClick={handleCopy}
       aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
       style={{
