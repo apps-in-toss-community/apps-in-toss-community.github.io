@@ -11,10 +11,17 @@ interface ProjectCardProps {
 /**
  * Renders a description string that may contain backtick-wrapped code
  * (e.g., `navigator.clipboard`) as inline <code> elements.
+ *
+ * `parts` is derived deterministically from the immutable `text`, so positions
+ * never reorder — index-as-key is genuinely safe here. Using the index keeps
+ * the key stable even if a description repeats the same backtick span twice.
  */
 function renderDescription(text: string): React.ReactNode {
   const parts = text.split(/`([^`]+)`/);
-  return parts.map((part, i) => (i % 2 === 1 ? <code key={part}>{part}</code> : part));
+  return parts.map((part, i) =>
+    // biome-ignore lint/suspicious/noArrayIndexKey: parts derives deterministically from immutable text; positions never reorder
+    i % 2 === 1 ? <code key={i}>{part}</code> : part,
+  );
 }
 
 export function ProjectCard({ project, lang }: ProjectCardProps) {
