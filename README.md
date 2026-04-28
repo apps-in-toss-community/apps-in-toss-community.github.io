@@ -21,6 +21,16 @@ pnpm typecheck    # tsc --noEmit
 pnpm sync:readme  # generate out/profile/README.md + README.en.md
 ```
 
+## Pre-commit hook
+
+Optional but recommended. After cloning, activate the standard pre-commit hook (runs `biome check` on staged files):
+
+```sh
+git config core.hooksPath .githooks
+```
+
+This is a developer convenience for fast feedback before push. CI runs the same checks as the enforcement layer, so contributors who don't activate the hook will still see lint failures in their PR.
+
 ## How org README sync works
 
 `scripts/sync-readme.ts` reads `content/projects.ts`, `content/values.{ko,en}.mdx`, and `content/quickstart.{ko,en}.mdx` to produce both READMEs.
