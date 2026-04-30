@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-## 프로젝트 성격 (요약)
+## 프로젝트 성격 (중요)
 
 `apps-in-toss-community`는 **비공식(unofficial) 오픈소스 커뮤니티**다. "공식/official/토스가 제공하는/powered by Toss" 등 제휴·후원 암시 표현 금지, "커뮤니티/오픈소스/비공식" 사용. 상세는 umbrella `../CLAUDE.md`의 '프로젝트 성격' 참조.
 
@@ -51,7 +51,7 @@ pnpm sync:readme    # out/profile/README.md + README.en.md 생성
 
 ## Content 규칙
 
-- **`content/projects.ts`**: 프로젝트 메타데이터, `status: 'available' | 'coming-soon'`으로 구분. 새 항목 추가 시 `ko`/`en` 설명 모두 작성하고 `pnpm build`, `pnpm sync:readme`로 검증.
+- **`content/projects.ts`**: 프로젝트 메타데이터, `status: 'available' | 'coming-soon'`으로 구분. 새 항목 추가 시 `ko`/`en` 설명 모두 작성하고 `pnpm build`, `pnpm sync:readme`로 검증. `demoUrl` 필드를 채우면 README 테이블과 ProjectCard에 데모 링크가 노출된다.
 - **MDX 파일**: `values.*.mdx`(불릿 리스트), `quickstart.*.mdx`(설명 + 코드 블록) 모두 순수 Markdown. Frontmatter는 `sync-readme.ts`가 자동 제거.
 
 ## i18n / 라우팅
@@ -60,7 +60,7 @@ pnpm sync:readme    # out/profile/README.md + README.en.md 생성
 
 ## 배포 플로우
 
-- **사이트**: main push → `deploy-pages.yml`이 `pnpm install && pnpm build` 후 `dist/`를 GitHub Pages에 배포.
+- **사이트**: main push → `deploy-pages.yml`이 `pnpm install && pnpm build` 후 `dist/`를 GitHub Pages에 배포. 빌드 산출물은 `dist/index.html`, `dist/ko/index.html`, `dist/en/index.html` 세 개 (vite-react-ssg 사전 렌더링).
 - **Org README**: main push에서 `content/**` 또는 `scripts/sync-readme.ts`가 변경되면 `sync-org-readme.yml`이 이 레포와 `.github` 레포를 함께 체크아웃, `pnpm sync:readme --out ../dotgithub/profile` 실행, 변경 있으면 `.github` 레포에 커밋·push.
 - **인증**: GitHub App installation token (`actions/create-github-app-token@v1`로 런타임 교환). 시크릿 `SYNC_APP_ID`, `SYNC_APP_PRIVATE_KEY` (`ait-community-sync-bot` App). `.github` repo의 branch ruleset은 이 App만 bypass actor — 사람 직접 push/merge 불가. (`SYNC_PAT` 방식은 2026-04에 App으로 마이그레이션됨.)
 
