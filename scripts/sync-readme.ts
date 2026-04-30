@@ -29,7 +29,7 @@ const STRINGS = {
     langLink: '[English →](./README.en.md)',
     resources: [
       '📦 [`@apps-in-toss/web-framework`](https://www.npmjs.com/package/@apps-in-toss/web-framework) — 원본 SDK',
-      '🏠 [Landing page](https://apps-in-toss-community.github.io/) — 프로젝트 허브',
+      '🏠 [Landing page](https://aitc.dev/) — 프로젝트 허브',
       '🧪 [SDK Web Demo](https://apps-in-toss-community.github.io/sdk-example/) — 브라우저에서 모든 API 실행',
     ],
   },
@@ -40,7 +40,7 @@ const STRINGS = {
     langLink: '[한국어 →](./README.md)',
     resources: [
       '📦 [`@apps-in-toss/web-framework`](https://www.npmjs.com/package/@apps-in-toss/web-framework) — the underlying SDK',
-      '🏠 [Landing page](https://apps-in-toss-community.github.io/) — project hub',
+      '🏠 [Landing page](https://aitc.dev/) — project hub',
       '🧪 [SDK Web Demo](https://apps-in-toss-community.github.io/sdk-example/) — every API in your browser',
     ],
   },
@@ -110,7 +110,7 @@ async function buildReadme(lang: 'ko' | 'en'): Promise<string> {
     '',
     `**${s.tagline}**`,
     '',
-    `[Landing](https://apps-in-toss-community.github.io/) · [Web Demo](https://apps-in-toss-community.github.io/sdk-example/) · ${s.langLink}`,
+    `[Landing](https://aitc.dev/) · [Web Demo](https://apps-in-toss-community.github.io/sdk-example/) · ${s.langLink}`,
     '',
     '</div>',
     '',
