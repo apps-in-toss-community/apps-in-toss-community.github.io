@@ -13,7 +13,14 @@
 
 ## Low Priority
 - [ ] Consider `@tanstack/react-router` migration (both homepage + sdk-example) once `vite-react-ssg`'s `Experimental_ViteReactSSG` tanstack entry is actually implemented (currently a runtime `throw` stub).
-- [ ] Consider a custom domain (CNAME)
+- [ ] Migrate GitHub Pages to `aitc.dev` apex custom domain (cross-repo decision; see umbrella `CLAUDE.md` § 운영 도메인 정책).
+  - Add `public/CNAME` containing `aitc.dev` (single line, no `https://`, no trailing slash). Vite copies `public/` verbatim into `dist/`, so the file ends up at the Pages site root as required.
+  - No Vite `base` change needed — this site is the apex (already deploys at `/`); `vite.config.ts` has no `base` override and should stay that way.
+  - Update README's "deployed at" line and any `content/` copy that hard-codes `apps-in-toss-community.github.io` to point at `https://aitc.dev/` (org GitHub URL stays as-is).
+  - Update `scripts/sync-readme.ts` `STRINGS` / link constants that emit the homepage URL into the org profile README.
+  - Add Cloudflare DNS records: apex `A` records to GitHub Pages IPs (185.199.108.153 / 109.153 / 110.153 / 111.153) and `AAAA` to the IPv6 set, or a Cloudflare-flattened `CNAME` to `apps-in-toss-community.github.io.`. Do NOT proxy through Cloudflare orange-cloud — Pages handles TLS itself.
+  - GitHub Settings → Pages → Custom domain: `aitc.dev`, Enforce HTTPS (wait for cert provisioning, typically <15 min).
+  - Verify `https://aitc.dev/`, `https://aitc.dev/ko/`, `https://aitc.dev/en/` all resolve and render the prerendered HTML; old `apps-in-toss-community.github.io` should auto-redirect.
 - [ ] Add OpenGraph/Twitter meta tags for social sharing
 - [ ] Add favicon
 - [ ] Accessibility audit (heading hierarchy, focus rings, contrast)
