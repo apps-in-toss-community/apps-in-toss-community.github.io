@@ -106,7 +106,7 @@ Frontmatter가 있으면 `sync-readme.ts`가 자동으로 제거한다.
 - `dist/en/index.html`
 
 **react-router-dom이 v6에 고정된 이유**: `vite-react-ssg@0.9.x`는 react-router-dom v6 API를 사용한다.
-v7로 올리려면 vite-react-ssg를 v7 호환 버전으로 함께 업그레이드해야 한다 (TODO.md 참고).
+v7로 올리려면 vite-react-ssg를 v7 호환 버전으로 함께 업그레이드해야 한다 (umbrella `../TODO.md`의 `apps-in-toss-community.github.io` 섹션 참고; 조직 TODO는 umbrella가 single source of truth, 이 repo의 `TODO.md`는 stub).
 
 ## 배포 플로우
 
