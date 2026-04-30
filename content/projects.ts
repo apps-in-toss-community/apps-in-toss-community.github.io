@@ -26,7 +26,7 @@ export const projects: Project[] = [
     name: 'sdk-example',
     repo: 'sdk-example',
     status: 'available',
-    demoUrl: 'https://apps-in-toss-community.github.io/sdk-example/',
+    demoUrl: 'https://sdk-example.aitc.dev/',
     description: {
       ko: '모든 SDK API를 직접 실행해보면서 **JSON 결과와 실행 이력을 실시간으로 확인할 수 있는 인터랙티브 레퍼런스 앱**.',
       en: 'An **interactive reference app** — run any SDK API and inspect the JSON result and execution history in real time.',
