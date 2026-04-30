@@ -10,7 +10,7 @@ import { ValueList } from '../components/ValueList';
 const LANG = 'ko' as const;
 const TITLE = 'apps-in-toss-community — 앱인토스 미니앱 개발을 가장 편하게';
 const DESCRIPTION = '앱인토스 미니앱 개발을 가장 편하게.';
-const CANONICAL = 'https://apps-in-toss-community.github.io/ko/';
+const CANONICAL = 'https://aitc.dev/ko/';
 
 export function HomeKo() {
   return (

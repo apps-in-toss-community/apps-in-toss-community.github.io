@@ -13,7 +13,7 @@
 ## 프로젝트 개요
 
 **apps-in-toss-community.github.io** — `apps-in-toss-community` GitHub organization의 landing page.
-`https://apps-in-toss-community.github.io/`로 배포되며, 모든 오픈소스 프로젝트를 소개하고 각 프로젝트로 연결하는 허브 역할을 한다.
+`https://aitc.dev/`로 배포되며 (GitHub Pages custom domain), 모든 오픈소스 프로젝트를 소개하고 각 프로젝트로 연결하는 허브 역할을 한다.
 
 또한 `content/` 디렉토리가 org profile README의 **단일 진실 공급원(single source of truth)**이다.
 `scripts/sync-readme.ts`가 content를 읽어 `.github/profile/README.md`와 `README.en.md`를 생성하고, GitHub Action이 main에 push될 때 자동으로 `.github` 레포에 커밋한다.

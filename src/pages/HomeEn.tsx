@@ -10,7 +10,7 @@ import { ValueList } from '../components/ValueList';
 const LANG = 'en' as const;
 const TITLE = 'apps-in-toss-community — The most convenient way to build Apps in Toss mini-apps';
 const DESCRIPTION = 'The most convenient way to build Apps in Toss mini-apps.';
-const CANONICAL = 'https://apps-in-toss-community.github.io/en/';
+const CANONICAL = 'https://aitc.dev/en/';
 
 export function HomeEn() {
   return (

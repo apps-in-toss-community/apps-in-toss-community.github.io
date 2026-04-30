@@ -1,6 +1,6 @@
 # apps-in-toss-community.github.io
 
-Source for the [apps-in-toss-community](https://github.com/apps-in-toss-community) organization landing page, deployed at **https://apps-in-toss-community.github.io/**.
+Source for the [apps-in-toss-community](https://github.com/apps-in-toss-community) organization landing page, deployed at **https://aitc.dev/**.
 
 This repo also serves as the **single source of truth** for the org profile READMEs in [`.github/profile/`](https://github.com/apps-in-toss-community/.github/tree/main/profile). A GitHub Action automatically regenerates and pushes them whenever `content/` changes on `main`.
 
