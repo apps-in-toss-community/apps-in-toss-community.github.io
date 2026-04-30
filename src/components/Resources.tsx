@@ -24,7 +24,7 @@ const resources = [
     icon: '📦',
   },
   {
-    href: 'https://apps-in-toss-community.github.io/sdk-example/',
+    href: 'https://sdk-example.aitc.dev/',
     label: { ko: 'SDK 웹 데모', en: 'SDK Web Demo' },
     icon: '🧪',
   },

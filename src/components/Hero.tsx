@@ -83,7 +83,7 @@ export function Hero({ lang }: HeroProps) {
       >
         {/* target="_blank" + rel because this is an external URL */}
         <a
-          href="https://apps-in-toss-community.github.io/sdk-example/"
+          href="https://sdk-example.aitc.dev/"
           target="_blank"
           rel="noopener noreferrer"
           className="hero-cta-primary"
