@@ -32,6 +32,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={handleCopy}
       aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
+      className="quickstart-copy"
       style={{
         position: 'absolute',
         top: '10px',

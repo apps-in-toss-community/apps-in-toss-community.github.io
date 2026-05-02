@@ -105,6 +105,7 @@ export function LangBanner() {
         type="button"
         onClick={dismiss}
         aria-label="Dismiss language banner"
+        className="lang-banner-dismiss"
         style={{
           background: 'none',
           border: 'none',
@@ -114,6 +115,7 @@ export function LangBanner() {
           lineHeight: 1,
           padding: '2px 4px',
           marginLeft: 'auto',
+          borderRadius: '4px',
         }}
       >
         ×

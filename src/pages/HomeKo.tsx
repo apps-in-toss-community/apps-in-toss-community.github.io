@@ -25,7 +25,7 @@ export function HomeKo() {
         <link rel="canonical" href={CANONICAL} />
       </Head>
       <Header lang={LANG} />
-      <main>
+      <main id="main">
         <Hero lang={LANG} />
         <ValueList lang={LANG} />
         <ProjectGrid lang={LANG} />
