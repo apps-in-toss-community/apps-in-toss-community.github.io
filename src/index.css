@@ -273,3 +273,42 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* -------------------------------------------------------------------------
+   Keyboard skip link — visually hidden until focused.
+   Uses the off-screen-then-reposition pattern so screen readers still
+   announce it. Z-index above the sticky header (50) so the visible
+   affordance is not clipped on focus.
+   ------------------------------------------------------------------------- */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-to-main:focus,
+.skip-to-main:focus-visible {
+  left: 0;
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   LangBanner dismiss button + QuickStart copy button — focus-visible.
+   Both render with `border: none` (LangBanner) or a faint border on a dark
+   background (QuickStart copy), so the UA default focus ring is invisible
+   or low-contrast. Make focus state explicit.
+   ------------------------------------------------------------------------- */
+.lang-banner-dismiss:focus-visible,
+.quickstart-copy:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

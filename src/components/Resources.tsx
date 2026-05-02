@@ -68,7 +68,7 @@ export function Resources({ lang }: ResourcesProps) {
           <li key={r.href}>
             {/* target="_blank" + rel because all resource links are external */}
             <a href={r.href} target="_blank" rel="noopener noreferrer" className="resource-link">
-              <span>{r.icon}</span>
+              <span aria-hidden="true">{r.icon}</span>
               {r.label[lang]}
             </a>
           </li>
