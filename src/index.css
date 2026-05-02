@@ -4,7 +4,7 @@
   :root {
     --fg: #191f28;
     --fg-soft: #4e5968;
-    --muted: #8b95a1;
+    --muted: #5f6b78;
     --bg: #f4f5f7;
     --card: #ffffff;
     --border: #e5e8eb;
@@ -14,6 +14,13 @@
     --accent-soft: rgba(49, 130, 246, 0.1);
     --accent-softer: rgba(49, 130, 246, 0.08);
     --accent-soft-strong: rgba(49, 130, 246, 0.16);
+    /* CTA / link tokens decoupled from brand --accent so we can satisfy
+       WCAG AA 4.5:1 on filled buttons (#fff text) and on tinted link
+       backgrounds without darkening the brand color itself. */
+    --cta-bg: #1769e0;
+    --cta-bg-hover: #1259c2;
+    --link-fg: #1565c0;
+    --code-label-fg: #aab1bd;
     --chip-bg: #edf0f3;
     --chip-wip-bg: #fff4e0;
     --chip-wip-fg: #8c5000;
@@ -28,7 +35,7 @@
     :root {
       --fg: #e5e8eb;
       --fg-soft: #b0b8c1;
-      --muted: #6b7684;
+      --muted: #9aa3ad;
       --bg: #111318;
       --card: #1c2028;
       --border: #2e3440;
@@ -38,6 +45,10 @@
       --accent-soft: rgba(77, 156, 248, 0.14);
       --accent-softer: rgba(77, 156, 248, 0.1);
       --accent-soft-strong: rgba(77, 156, 248, 0.2);
+      --cta-bg: #1769e0;
+      --cta-bg-hover: #1259c2;
+      --link-fg: #7ab8ff;
+      --code-label-fg: #aab1bd;
       --chip-bg: #2e3440;
       --chip-wip-bg: #332200;
       --chip-wip-fg: #ffb84d;
@@ -122,7 +133,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--accent);
+  background: var(--cta-bg);
   color: #fff;
   font-weight: 600;
   font-size: 15px;
@@ -135,14 +146,14 @@
 }
 
 .hero-cta-primary:hover {
-  background: var(--accent-hover);
+  background: var(--cta-bg-hover);
   transform: translateY(-1px);
 }
 
 .hero-cta-primary:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--cta-bg);
   outline-offset: 2px;
-  background: var(--accent-hover);
+  background: var(--cta-bg-hover);
 }
 
 .hero-cta-secondary {
@@ -190,7 +201,6 @@
 .project-card--wip {
   background: var(--card-wip);
   border: 1px dashed var(--border-wip);
-  opacity: 0.65;
 }
 
 .project-card:hover {
@@ -203,10 +213,6 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-color: var(--accent);
-}
-
-.project-card.project-card--wip:hover {
-  opacity: 0.9;
 }
 
 /* ProjectCard repo name link */
@@ -226,7 +232,7 @@
   gap: 4px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--link-fg);
   background: var(--accent-softer);
   padding: 5px 12px;
   border-radius: 6px;
@@ -284,7 +290,7 @@
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--accent);
+  background: var(--cta-bg);
   color: #fff;
   font-weight: 600;
   font-size: 14px;

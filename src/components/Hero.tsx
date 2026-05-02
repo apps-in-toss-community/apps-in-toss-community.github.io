@@ -39,7 +39,7 @@ export function Hero({ lang }: HeroProps) {
           fontSize: '11px',
           fontWeight: 600,
           letterSpacing: '0.08em',
-          color: 'var(--accent)',
+          color: 'var(--link-fg)',
           background: 'var(--accent-soft)',
           padding: '4px 12px',
           borderRadius: '999px',
