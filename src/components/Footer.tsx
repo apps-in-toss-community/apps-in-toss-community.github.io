@@ -20,6 +20,7 @@ export function Footer() {
           style={{ color: 'inherit', textDecoration: 'underline' }}
         >
           community-driven
+          <span className="sr-only"> (opens in new tab)</span>
         </a>
         , not affiliated with Toss.
       </p>

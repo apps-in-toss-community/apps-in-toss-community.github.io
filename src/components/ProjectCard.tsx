@@ -24,9 +24,12 @@ function renderDescription(text: string): React.ReactNode {
   );
 }
 
+const NEW_TAB_LABEL = { ko: '새 탭에서 열기', en: 'opens in new tab' } as const;
+
 export function ProjectCard({ project, lang }: ProjectCardProps) {
   const isAvailable = project.status === 'available';
   const description = project.description[lang];
+  const newTab = NEW_TAB_LABEL[lang];
 
   return (
     <article className={`project-card${isAvailable ? '' : ' project-card--wip'}`}>
@@ -54,6 +57,7 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
           }}
         >
           {project.name}
+          <span className="sr-only"> ({newTab})</span>
         </a>
         {!isAvailable && (
           <span
@@ -97,6 +101,7 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
             className="project-card-demo-link"
           >
             {lang === 'ko' ? '웹 데모 열기 →' : 'Open web demo →'}
+            <span className="sr-only"> ({newTab})</span>
           </a>
         </div>
       )}
