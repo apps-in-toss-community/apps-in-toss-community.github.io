@@ -93,7 +93,7 @@ export function LangBanner() {
       <a
         href={switchHref}
         style={{
-          color: 'var(--accent)',
+          color: 'var(--link-fg)',
           fontWeight: 600,
           textDecoration: 'none',
           whiteSpace: 'nowrap',

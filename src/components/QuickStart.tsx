@@ -99,7 +99,7 @@ function CodeBlock({ children, className }: { children?: React.ReactNode; classN
             fontSize: '10px',
             fontWeight: 600,
             letterSpacing: '0.06em',
-            color: 'rgba(255,255,255,0.35)',
+            color: 'var(--code-label-fg)',
             textTransform: 'uppercase',
             fontFamily: 'ui-monospace, "SF Mono", Menlo, monospace',
           }}
