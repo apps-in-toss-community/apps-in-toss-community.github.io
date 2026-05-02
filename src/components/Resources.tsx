@@ -9,6 +9,8 @@ const headings = {
   en: 'Resources',
 };
 
+const newTabLabel = { ko: '새 탭에서 열기', en: 'opens in new tab' } as const;
+
 const resources = [
   {
     href: 'https://github.com/apps-in-toss-community',
@@ -70,6 +72,7 @@ export function Resources({ lang }: ResourcesProps) {
             <a href={r.href} target="_blank" rel="noopener noreferrer" className="resource-link">
               <span aria-hidden="true">{r.icon}</span>
               {r.label[lang]}
+              <span className="sr-only"> ({newTabLabel[lang]})</span>
             </a>
           </li>
         ))}

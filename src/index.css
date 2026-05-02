@@ -312,3 +312,20 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* -------------------------------------------------------------------------
+   Standard "visually hidden, AT-readable" utility (WAI ARIA-APG pattern).
+   Used to attach screen-reader-only context like "(opens in new tab)"
+   to external links without disturbing visual layout.
+   ------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

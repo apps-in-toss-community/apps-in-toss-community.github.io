@@ -10,12 +10,14 @@ const copy = {
     tagline: '앱인토스 미니앱 개발을 가장 편하게.',
     ctaPrimary: '웹 데모 열기',
     ctaSecondary: 'GitHub →',
+    newTab: '새 탭에서 열기',
   },
   en: {
     title: 'apps-in-toss-community',
     tagline: 'The most convenient way to build Apps in Toss mini-apps.',
     ctaPrimary: 'Open web demo',
     ctaSecondary: 'GitHub →',
+    newTab: 'opens in new tab',
   },
 };
 
@@ -89,6 +91,7 @@ export function Hero({ lang }: HeroProps) {
           className="hero-cta-primary"
         >
           {t.ctaPrimary}
+          <span className="sr-only"> ({t.newTab})</span>
         </a>
         {/* target="_blank" + rel because this is an external GitHub URL */}
         <a
@@ -98,6 +101,7 @@ export function Hero({ lang }: HeroProps) {
           className="hero-cta-secondary"
         >
           {t.ctaSecondary}
+          <span className="sr-only"> ({t.newTab})</span>
         </a>
       </div>
     </section>
