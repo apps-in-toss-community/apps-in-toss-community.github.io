@@ -76,3 +76,4 @@ pnpm sync:readme    # out/profile/README.md + README.en.md 생성
 
 - 도메인 정책 (`aitc.dev` apex, sub-repo 매핑)은 umbrella [`CLAUDE.md`](https://github.com/apps-in-toss-community/umbrella/blob/main/CLAUDE.md)의 '운영 도메인 정책' 참조.
 - 조직 TODO는 umbrella [`TODO.md`](https://github.com/apps-in-toss-community/umbrella/blob/main/TODO.md)가 single source of truth, 이 repo의 `TODO.md`는 stub. react-router-dom v7 마이그레이션 같은 repo-specific 항목도 거기 모아둔다.
+- PR 머지 시 작성자가 관련 TODO 항목 close + 새 follow-up 추가 — 상세는 umbrella [`CLAUDE.md` "TODO 관리"](https://github.com/apps-in-toss-community/umbrella/blob/main/CLAUDE.md#todo-관리--umbrella가-single-source-of-truth).
