@@ -2,7 +2,7 @@
 
 ## 프로젝트 성격 (중요)
 
-`apps-in-toss-community`는 **비공식(unofficial) 오픈소스 커뮤니티**다. "공식/official/토스가 제공하는/powered by Toss" 등 제휴·후원 암시 표현 금지, "커뮤니티/오픈소스/비공식" 사용. 상세는 umbrella [`CLAUDE.md`](https://github.com/apps-in-toss-community/umbrella/blob/main/CLAUDE.md)의 '프로젝트 성격' 참조.
+`apps-in-toss-community`는 **비공식(unofficial) 오픈소스 커뮤니티**다. 토스/앱인토스 팀과 제휴·후원·인증 관계가 없다. 사용자에게 보이는 모든 산출물(README, UI 카피, 패키지 설명, 커밋/PR 메시지, 코드 주석 등)에서 "공식(official)", "공식 플러그인/도구", "토스가 제공하는", "앱인토스에서 만든", "powered by Toss" 등 제휴·후원·인증을 암시하는 표현을 **금지**한다. 대신 "커뮤니티(community)", "오픈소스", "비공식(unofficial)"을 쓴다. 의심스러우면 빼라.
 
 **landing page와 org profile README는 조직의 얼굴**이라 특히 주의. 이 규칙은 `content/`(MDX/TS), `scripts/sync-readme.ts`로 생성되는 org profile README, 모든 UI 카피에 동일 적용.
 
@@ -14,11 +14,11 @@
 
 - **`.github`** — `content/`가 org profile README의 source of truth. main push 시 `sync-org-readme.yml`이 `.github/profile/README.md`로 자동 동기화. **`.github`에는 직접 PR 금지** — 여기 source만 고친다.
 
-전체 짝 관계는 umbrella [`CLAUDE.md`](https://github.com/apps-in-toss-community/umbrella/blob/main/CLAUDE.md)의 '짝(pair) 관계' 참조.
-
 ## 기술 스택
 
-Vite + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite`), MDX (`@mdx-js/rollup`) for content, **vite-react-ssg**로 정적 사전 렌더링, **react-router-dom v6 고정** (vite-react-ssg가 v6 API 의존, v7 업그레이드 시 vite-react-ssg를 v7 호환 버전으로 함께 올려야 함). 공통 스택(Node 24, pnpm 10.33.0, Biome 등)은 umbrella [`CLAUDE.md`](https://github.com/apps-in-toss-community/umbrella/blob/main/CLAUDE.md) 참조. 기존 코드 맥락상 Biome `noArrayIndexKey`, `useButtonType`은 우선 off, 후속 PR에서 개선.
+Vite + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite`), MDX (`@mdx-js/rollup`) for content, **vite-react-ssg**로 정적 사전 렌더링, **react-router-dom v6 고정** (vite-react-ssg가 v6 API 의존, v7 업그레이드 시 vite-react-ssg를 v7 호환 버전으로 함께 올려야 함). 기존 코드 맥락상 Biome `noArrayIndexKey`, `useButtonType`은 우선 off, 후속 PR에서 개선.
+
+공통 스택: **Node 24 LTS, pnpm 10.33.0, TypeScript strict, Biome (lint+format, ESLint/Prettier 사용 안 함)**. pre-commit hook은 source-controlled (`.githooks/pre-commit`), contributor가 수동 활성화: `git config core.hooksPath .githooks`. Commit message는 Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
 
 ## 명령어
 
@@ -72,8 +72,6 @@ pnpm sync:readme    # out/profile/README.md + README.en.md 생성
 
 시각적 산출물 변경 후에는 **반드시 Playwright MCP로 브라우저에서 동작 확인**한다 (단순 prop 변경이라도 렌더 깨짐 가능). `pnpm dev` 띄우고 navigate → snapshot(DOM 회귀) → screenshot(시각) → console messages(런타임 에러) 순. 타입 체크와 테스트 통과만으로 UI 회귀는 못 잡는다 — 시각 검증 없이 "완료" 보고 금지. tool schema는 시스템에서 자동 제공.
 
-## 운영 / TODO
+## 이슈 / 제안
 
-- 도메인 정책 (`aitc.dev` apex, sub-repo 매핑)은 umbrella [`CLAUDE.md`](https://github.com/apps-in-toss-community/umbrella/blob/main/CLAUDE.md)의 '운영 도메인 정책' 참조.
-- 조직 TODO는 umbrella [`TODO.md`](https://github.com/apps-in-toss-community/umbrella/blob/main/TODO.md)가 single source of truth, 이 repo의 `TODO.md`는 stub. react-router-dom v7 마이그레이션 같은 repo-specific 항목도 거기 모아둔다.
-- PR 머지 시 작성자가 관련 TODO 항목 close + 새 follow-up 추가 — 상세는 umbrella [`CLAUDE.md` "TODO 관리"](https://github.com/apps-in-toss-community/umbrella/blob/main/CLAUDE.md#todo-관리--umbrella가-single-source-of-truth).
+이슈/제안/버그 리포트는 GitHub Issues로.
