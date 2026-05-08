@@ -17,5 +17,5 @@
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "include": ["src", "content", "scripts"]
+  "include": ["src", "content", "scripts", "vitest.setup.ts"]
 }
