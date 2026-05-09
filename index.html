@@ -4,6 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!--
+      Theme bootstrap — must run before first paint to avoid FOUC.
+      Reads the persisted choice (system | light | dark), resolves "system"
+      against the OS preference, and writes <html data-theme="…"> so the
+      stylesheet picks the right token set on the very first render.
+      Stays inline (not bundled) so it's blocking and not deferred.
+    -->
+    <script>
+      (() => {
+        let mode = 'system';
+        let resolved = 'light';
+        try {
+          const stored = localStorage.getItem('aitc-theme');
+          if (stored === 'light' || stored === 'dark' || stored === 'system') {
+            mode = stored;
+          }
+          resolved =
+            mode === 'system'
+              ? window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+              : mode;
+          document.documentElement.dataset.theme = resolved;
+        } catch {
+          // localStorage unavailable: leave attribute unset so the
+          // `:root:not([data-theme])` + prefers-color-scheme fallback applies.
+        }
+      })();
+    </script>
+
     <title>apps-in-toss-community — 앱인토스 미니앱 개발을 가장 편하게.</title>
     <meta
       name="description"
