@@ -23,6 +23,14 @@ export function HomeEn() {
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href={CANONICAL} />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:url" content={CANONICAL} />
+        <meta property="og:image" content="https://aitc.dev/og/homepage.png" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+        <meta name="twitter:image" content="https://aitc.dev/og/homepage.png" />
       </Head>
       <Header lang={LANG} />
       <main id="main">

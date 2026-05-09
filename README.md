@@ -47,6 +47,18 @@ To refresh the cache manually:
 pnpm fetch:metadata
 ```
 
+## OG images
+
+Static Open Graph PNGs (1200×630) for the homepage and every project are generated at build time by `scripts/build-og-images.tsx` — JSX template in `src/og/template.tsx` → satori → SVG → sharp → PNG → `public/og/<slug>.png`. Runs as part of `prebuild`, so the committed PNGs always match the current `content/projects.ts`. Pretendard fonts (SIL OFL) ship in `src/og/fonts/`.
+
+To regenerate manually after editing the template or projects list:
+
+```bash
+pnpm build:og
+```
+
+Then review the diff in `public/og/` before committing.
+
 ## How org README sync works
 
 `scripts/sync-readme.ts` reads `content/projects.ts`, `content/values.{ko,en}.mdx`, and `content/quickstart.{ko,en}.mdx` to produce both READMEs.
