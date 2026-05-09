@@ -225,6 +225,28 @@
   outline-offset: 2px;
 }
 
+/* ProjectCard metadata strip — last updated, stars, language */
+.project-card-meta {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.project-card-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.project-card-meta time {
+  color: inherit;
+}
+
 /* ProjectCard demo link */
 .project-card-demo-link {
   display: inline-flex;
