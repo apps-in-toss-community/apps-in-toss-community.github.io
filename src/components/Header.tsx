@@ -1,3 +1,5 @@
+import { ThemeToggle } from './ThemeToggle';
+
 type Lang = 'ko' | 'en';
 
 interface HeaderProps {
@@ -33,71 +35,74 @@ export function Header({ lang }: HeaderProps) {
          */}
         <a
           href={lang === 'en' ? '/en/' : '/ko/'}
-          className="lang-switch-link"
+          className="lang-switch-link header-brand"
           style={{
             fontWeight: 700,
-            fontSize: '15px',
             color: 'var(--fg)',
             textDecoration: 'none',
             letterSpacing: '-0.01em',
+            whiteSpace: 'nowrap',
           }}
         >
           apps-in-toss-community
         </a>
 
-        <nav
-          aria-label="Language switcher"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '2px',
-            background: 'var(--chip-bg)',
-            borderRadius: '8px',
-            padding: '3px',
-          }}
-        >
-          {/*
-           * Deliberately using <a> instead of react-router's <Link>: a full-page
-           * reload is desirable here so each route's SSG-baked <title>,
-           * <html lang>, and <link rel="canonical"> take effect immediately.
-           */}
-          <a
-            href="/ko/"
-            aria-current={lang === 'ko' ? 'page' : undefined}
-            className="lang-switch-link"
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <ThemeToggle lang={lang} />
+          <nav
+            aria-label="Language switcher"
             style={{
-              fontSize: '12px',
-              fontWeight: lang === 'ko' ? 600 : 400,
-              color: lang === 'ko' ? 'var(--fg)' : 'var(--muted)',
-              textDecoration: 'none',
-              padding: '4px 10px',
-              borderRadius: '6px',
-              background: lang === 'ko' ? 'var(--card)' : 'transparent',
-              boxShadow: lang === 'ko' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
-              transition: 'all 0.1s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2px',
+              background: 'var(--chip-bg)',
+              borderRadius: '8px',
+              padding: '3px',
             }}
           >
-            한국어
-          </a>
-          <a
-            href="/en/"
-            aria-current={lang === 'en' ? 'page' : undefined}
-            className="lang-switch-link"
-            style={{
-              fontSize: '12px',
-              fontWeight: lang === 'en' ? 600 : 400,
-              color: lang === 'en' ? 'var(--fg)' : 'var(--muted)',
-              textDecoration: 'none',
-              padding: '4px 10px',
-              borderRadius: '6px',
-              background: lang === 'en' ? 'var(--card)' : 'transparent',
-              boxShadow: lang === 'en' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
-              transition: 'all 0.1s ease',
-            }}
-          >
-            English
-          </a>
-        </nav>
+            {/*
+             * Deliberately using <a> instead of react-router's <Link>: a full-page
+             * reload is desirable here so each route's SSG-baked <title>,
+             * <html lang>, and <link rel="canonical"> take effect immediately.
+             */}
+            <a
+              href="/ko/"
+              aria-current={lang === 'ko' ? 'page' : undefined}
+              className="lang-switch-link"
+              style={{
+                fontSize: '12px',
+                fontWeight: lang === 'ko' ? 600 : 400,
+                color: lang === 'ko' ? 'var(--fg)' : 'var(--muted)',
+                textDecoration: 'none',
+                padding: '4px 10px',
+                borderRadius: '6px',
+                background: lang === 'ko' ? 'var(--card)' : 'transparent',
+                boxShadow: lang === 'ko' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+                transition: 'all 0.1s ease',
+              }}
+            >
+              한국어
+            </a>
+            <a
+              href="/en/"
+              aria-current={lang === 'en' ? 'page' : undefined}
+              className="lang-switch-link"
+              style={{
+                fontSize: '12px',
+                fontWeight: lang === 'en' ? 600 : 400,
+                color: lang === 'en' ? 'var(--fg)' : 'var(--muted)',
+                textDecoration: 'none',
+                padding: '4px 10px',
+                borderRadius: '6px',
+                background: lang === 'en' ? 'var(--card)' : 'transparent',
+                boxShadow: lang === 'en' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+                transition: 'all 0.1s ease',
+              }}
+            >
+              English
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
   );

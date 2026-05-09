@@ -31,6 +31,10 @@ git config core.hooksPath .githooks
 
 This is a developer convenience for fast feedback before push. CI runs the same checks as the enforcement layer, so contributors who don't activate the hook will still see lint failures in their PR.
 
+## Theme
+
+The header includes a 3-state theme toggle (System → Light → Dark → System). The choice persists in `localStorage` under `aitc-theme`; an inline script in `index.html` applies it before first paint so there's no FOUC on reload. Without JS, the page falls back to `prefers-color-scheme`.
+
 ## ProjectCard metadata
 
 Each project card on the landing page shows last-updated time, star count, and primary language. The data is fetched from the GitHub REST API at **build time** by `scripts/fetch-repo-metadata.ts` (run via `prebuild`) and committed to `src/generated/repo-metadata.json` so dev runs and offline builds work without network access.
