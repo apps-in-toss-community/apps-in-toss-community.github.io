@@ -1,11 +1,40 @@
 import type { Project } from '../../content/projects';
 import { repoUrl } from '../../content/projects';
+import repoMetadata from '../generated/repo-metadata.json';
 
 type Lang = 'ko' | 'en';
 
 interface ProjectCardProps {
   project: Project;
   lang: Lang;
+}
+
+interface RepoMetadata {
+  pushed_at: string | null;
+  stargazers_count: number | null;
+  language: string | null;
+}
+
+const META: Record<string, RepoMetadata> = repoMetadata;
+
+const RELATIVE_UNITS: Array<[Intl.RelativeTimeFormatUnit, number]> = [
+  ['year', 60 * 60 * 24 * 365],
+  ['month', 60 * 60 * 24 * 30],
+  ['week', 60 * 60 * 24 * 7],
+  ['day', 60 * 60 * 24],
+  ['hour', 60 * 60],
+  ['minute', 60],
+];
+
+function formatRelative(iso: string, lang: Lang, now: number = Date.now()): string {
+  const seconds = Math.round((new Date(iso).getTime() - now) / 1000);
+  const fmt = new Intl.RelativeTimeFormat(lang === 'ko' ? 'ko' : 'en', { numeric: 'auto' });
+  for (const [unit, secondsInUnit] of RELATIVE_UNITS) {
+    if (Math.abs(seconds) >= secondsInUnit || unit === 'minute') {
+      return fmt.format(Math.round(seconds / secondsInUnit), unit);
+    }
+  }
+  return fmt.format(0, 'minute');
 }
 
 /**
@@ -25,6 +54,50 @@ function renderDescription(text: string): React.ReactNode {
 }
 
 const NEW_TAB_LABEL = { ko: '새 탭에서 열기', en: 'opens in new tab' } as const;
+const UPDATED_LABEL = { ko: '업데이트', en: 'updated' } as const;
+const STARS_LABEL = { ko: '스타', en: 'stars' } as const;
+
+function ProjectMeta({ repo, lang }: { repo: string; lang: Lang }) {
+  const meta = META[repo];
+  if (!meta) return null;
+
+  const items: React.ReactNode[] = [];
+
+  if (typeof meta.stargazers_count === 'number' && meta.stargazers_count > 0) {
+    items.push(
+      <span key="stars" className="project-card-meta-item">
+        <span aria-hidden="true">★</span>
+        <span>{meta.stargazers_count.toLocaleString(lang === 'ko' ? 'ko' : 'en')}</span>
+        <span className="sr-only"> {STARS_LABEL[lang]}</span>
+      </span>,
+    );
+  }
+
+  if (meta.language) {
+    items.push(
+      <span key="language" className="project-card-meta-item">
+        {meta.language}
+      </span>,
+    );
+  }
+
+  if (meta.pushed_at) {
+    const isoDate = meta.pushed_at;
+    const absolute = new Date(isoDate).toISOString().slice(0, 10);
+    items.push(
+      <span key="pushed" className="project-card-meta-item">
+        <span aria-hidden="true">{UPDATED_LABEL[lang]} </span>
+        <time dateTime={isoDate} title={absolute}>
+          {formatRelative(isoDate, lang)}
+        </time>
+      </span>,
+    );
+  }
+
+  if (items.length === 0) return null;
+
+  return <div className="project-card-meta">{items}</div>;
+}
 
 export function ProjectCard({ project, lang }: ProjectCardProps) {
   const isAvailable = project.status === 'available';
@@ -90,6 +163,8 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
       >
         {renderDescription(description)}
       </p>
+
+      <ProjectMeta repo={project.repo} lang={lang} />
 
       {project.demoUrl != null && (
         <div style={{ marginTop: '12px' }}>

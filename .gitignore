@@ -9,3 +9,6 @@ coverage/
 .claude/settings.local.json
 .claude/*.lock
 .claude.lock
+
+# Playwright MCP scratch (snapshots, console logs, screenshots)
+.playwright-mcp/
