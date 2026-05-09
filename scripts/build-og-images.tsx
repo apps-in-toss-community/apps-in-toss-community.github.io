@@ -61,6 +61,8 @@ function projectEntry(p: (typeof projects)[number]): OgEntry {
     slug: p.id,
     eyebrow: p.status === 'available' ? 'Available now' : 'Coming soon',
     title: p.name,
+    // OG images are locale-neutral by design (one PNG per project, used by both
+    // /ko and /en routes); ko description is the canonical copy.
     subtitle: truncate(plainText(p.description.ko), 120),
     footer: `aitc.dev · ${p.repo}`,
   };
@@ -92,7 +94,12 @@ async function renderEntry(
     />,
     { width: 1200, height: 630, fonts },
   );
-  const png = await sharp(Buffer.from(svg)).png({ compressionLevel: 9, quality: 90 }).toBuffer();
+  // palette: true switches to 8-bit colormap PNG, which is ~3x smaller for the
+  // limited palette we use (brand blue, grays, white). quality controls the
+  // quantization aggressiveness on top of that.
+  const png = await sharp(Buffer.from(svg))
+    .png({ compressionLevel: 9, palette: true, quality: 90 })
+    .toBuffer();
   await writeFile(resolve(OUT_DIR, `${entry.slug}.png`), png);
 }
 
