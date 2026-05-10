@@ -30,4 +30,13 @@ jobs:
 
       - run: pnpm typecheck
 
+      - run: pnpm test
+
       - run: pnpm build
+
+      # axe-core run against the SSG build via Playwright. See
+      # docs/a11y-audit-2026-05.md for scope and manual follow-ups.
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - run: pnpm test:a11y

@@ -12,3 +12,7 @@ coverage/
 
 # Playwright MCP scratch (snapshots, console logs, screenshots)
 .playwright-mcp/
+
+# Playwright test runner output
+/playwright-report/
+/test-results/

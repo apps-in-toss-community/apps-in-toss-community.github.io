@@ -26,10 +26,13 @@ Vite + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite`), MDX (`@mdx-
 pnpm dev            # 로컬 dev 서버
 pnpm build          # dist/ 사전 렌더링 (index.html, ko/index.html, en/index.html)
 pnpm typecheck      # tsc --noEmit
+pnpm test           # Vitest (단위)
+pnpm test:a11y      # Playwright + axe-core (자동화 a11y audit; build 필요)
 pnpm sync:readme    # out/profile/README.md + README.en.md 생성
 ```
 
-전체 스크립트는 `package.json` 참조.
+전체 스크립트는 `package.json` 참조. a11y audit의 스코프와 수동 follow-up
+체크리스트는 `docs/a11y-audit-2026-05.md`.
 
 ## 파일 구조
 
