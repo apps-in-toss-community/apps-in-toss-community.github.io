@@ -31,8 +31,20 @@ export function Hero({ lang }: HeroProps) {
         maxWidth: '960px',
         margin: '0 auto',
         textAlign: 'center',
+        position: 'relative',
       }}
     >
+      {/* Subtle brand glow — only visible in dark mode via CSS variable */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'var(--hero-glow)',
+          pointerEvents: 'none',
+          borderRadius: 'inherit',
+        }}
+      />
       <div
         style={{
           display: 'inline-block',

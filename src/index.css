@@ -29,6 +29,9 @@
     --border-wip: #c9ced4;
     --code-bg: #191f28;
     --code-fg: #e5e8eb;
+    --lang-tab-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --hero-glow: none;
+    --cta-shadow: none;
   }
 
   /* Dark theme tokens — applied when the inline FOUC-prevention script
@@ -45,21 +48,35 @@
     --border-strong: #404858;
     --accent: #4d9cf8;
     --accent-hover: #3182f6;
-    --accent-soft: rgba(77, 156, 248, 0.14);
-    --accent-softer: rgba(77, 156, 248, 0.1);
-    --accent-soft-strong: rgba(77, 156, 248, 0.2);
+    --accent-soft: rgba(77, 156, 248, 0.18);
+    --accent-softer: rgba(77, 156, 248, 0.12);
+    --accent-soft-strong: rgba(77, 156, 248, 0.26);
+    /* CTA: keep base blue that clears 4.5:1 vs #fff (5.08:1). In dark mode
+       a subtle glow ring makes the button pop on the dark canvas without
+       sacrificing contrast. */
     --cta-bg: #1769e0;
     --cta-bg-hover: #1259c2;
+    --cta-shadow: 0 0 0 1px rgba(77, 156, 248, 0.35), 0 2px 8px rgba(23, 105, 224, 0.4);
     --link-fg: #7ab8ff;
-    --code-label-fg: #aab1bd;
+    /* code-label-fg brightened slightly for better legibility on dark code bg */
+    --code-label-fg: #c4cad4;
     --chip-bg: #2e3440;
-    --chip-wip-bg: #332200;
+    /* WIP chip bg lifted from near-black to a visible amber-dark tone */
+    --chip-wip-bg: #3d2900;
     --chip-wip-fg: #ffb84d;
-    --chip-wip-border: #c87a00;
+    --chip-wip-border: #d98a10;
     --card-wip: #161b24;
     --border-wip: #3a4050;
     --code-bg: #0d1117;
     --code-fg: #e5e8eb;
+    /* Shadow token for active language tab — must be visible on dark cards */
+    --lang-tab-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+    /* Hero gradient overlay tokens */
+    --hero-glow: radial-gradient(
+      ellipse 70% 50% at 50% 0%,
+      rgba(77, 156, 248, 0.07) 0%,
+      transparent 70%
+    );
   }
 
   /* Fallback when JS is disabled / inline script failed: <html> has no
@@ -75,21 +92,28 @@
       --border-strong: #404858;
       --accent: #4d9cf8;
       --accent-hover: #3182f6;
-      --accent-soft: rgba(77, 156, 248, 0.14);
-      --accent-softer: rgba(77, 156, 248, 0.1);
-      --accent-soft-strong: rgba(77, 156, 248, 0.2);
+      --accent-soft: rgba(77, 156, 248, 0.18);
+      --accent-softer: rgba(77, 156, 248, 0.12);
+      --accent-soft-strong: rgba(77, 156, 248, 0.26);
       --cta-bg: #1769e0;
       --cta-bg-hover: #1259c2;
+      --cta-shadow: 0 0 0 1px rgba(77, 156, 248, 0.35), 0 2px 8px rgba(23, 105, 224, 0.4);
       --link-fg: #7ab8ff;
-      --code-label-fg: #aab1bd;
+      --code-label-fg: #c4cad4;
       --chip-bg: #2e3440;
-      --chip-wip-bg: #332200;
+      --chip-wip-bg: #3d2900;
       --chip-wip-fg: #ffb84d;
-      --chip-wip-border: #c87a00;
+      --chip-wip-border: #d98a10;
       --card-wip: #161b24;
       --border-wip: #3a4050;
       --code-bg: #0d1117;
       --code-fg: #e5e8eb;
+      --lang-tab-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+      --hero-glow: radial-gradient(
+        ellipse 70% 50% at 50% 0%,
+        rgba(77, 156, 248, 0.07) 0%,
+        transparent 70%
+      );
     }
   }
 
@@ -173,8 +197,10 @@
   padding: 11px 24px;
   border-radius: 10px;
   text-decoration: none;
+  box-shadow: var(--cta-shadow, none);
   transition:
     background 0.15s ease,
+    box-shadow 0.15s ease,
     transform 0.1s ease;
 }
 
