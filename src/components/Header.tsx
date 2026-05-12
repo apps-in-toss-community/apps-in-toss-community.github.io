@@ -77,7 +77,7 @@ export function Header({ lang }: HeaderProps) {
                 padding: '4px 10px',
                 borderRadius: '6px',
                 background: lang === 'ko' ? 'var(--card)' : 'transparent',
-                boxShadow: lang === 'ko' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+                boxShadow: lang === 'ko' ? 'var(--lang-tab-shadow)' : 'none',
                 transition: 'all 0.1s ease',
               }}
             >
@@ -95,7 +95,7 @@ export function Header({ lang }: HeaderProps) {
                 padding: '4px 10px',
                 borderRadius: '6px',
                 background: lang === 'en' ? 'var(--card)' : 'transparent',
-                boxShadow: lang === 'en' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+                boxShadow: lang === 'en' ? 'var(--lang-tab-shadow)' : 'none',
                 transition: 'all 0.1s ease',
               }}
             >
