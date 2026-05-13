@@ -1,10 +1,14 @@
 # CLAUDE.md
 
-## 프로젝트 성격 (중요)
+## 프로젝트 성격
 
-`apps-in-toss-community`는 **비공식(unofficial) 오픈소스 커뮤니티**다. 토스/앱인토스 팀과 제휴·후원·인증 관계가 없다. 사용자에게 보이는 모든 산출물(README, UI 카피, 패키지 설명, 커밋/PR 메시지, 코드 주석 등)에서 "공식(official)", "공식 플러그인/도구", "토스가 제공하는", "앱인토스에서 만든", "powered by Toss" 등 제휴·후원·인증을 암시하는 표현을 **금지**한다. 대신 "커뮤니티(community)", "오픈소스", "비공식(unofficial)"을 쓴다. 의심스러우면 빼라.
+`apps-in-toss-community`는 토스/앱인토스 팀과 제휴 관계가 없는 커뮤니티 프로젝트다. 공식 프로젝트 아님. 사용자에게 보여지는 모든 산출물(README, UI 카피, 패키지 설명, 커밋/PR 메시지, 코드 주석 등)에서 "공식(official)", "토스가 제공하는", "앱인토스에서 만든", "powered by Toss" 같은 제휴·후원·인증 암시 표현은 금지. 대신 "커뮤니티(community)" 같은 자연스러운 표현. 의심스러우면 빼라.
 
 **landing page와 org profile README는 조직의 얼굴**이라 특히 주의. 이 규칙은 `content/`(MDX/TS), `scripts/sync-readme.ts`로 생성되는 org profile README, 모든 UI 카피에 동일 적용.
+
+**톤 가이드** (방어적 disclaimer 금지): README 푸터에 한 줄로 1회만 명시 — ko `README.md`는 `커뮤니티 오픈소스 프로젝트입니다.`, en `README.en.md`는 `Community open-source project.`. "제휴 아님" 같은 방어적 표현 대신 "커뮤니티 오픈소스" 정체성만 자연스럽게. 헤더 직후의 `>` blockquote 박스, ⚠️ 아이콘, 굵은 글씨, `unofficial`/`비공식` 같은 강한 라벨은 쓰지 않는다. 한 파일 안에서 영/한 병기 금지(다중 언어는 ko/en 별도 파일로 분리). 기술적 단서는 disclaimer에 묶지 않고 본문 기능 설명에 자연스럽게 녹인다.
+
+**README i18n**: `README.md`(한국어, GitHub default) + `README.en.md`(영어). 둘 다 상단 상호 link(`[한국어](./README.md)` / `[English](./README.en.md)`), 동등 정본 — 한 쪽 갱신 시 같은 PR에서 반대쪽도 갱신. 자세한 정책은 umbrella `CLAUDE.md` "i18n 정책" 섹션.
 
 ## 프로젝트 개요
 
