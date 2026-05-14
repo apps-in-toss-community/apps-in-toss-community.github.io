@@ -8,6 +8,8 @@ const copy = {
   ko: {
     title: 'apps-in-toss-community',
     tagline: '앱인토스 미니앱 개발을 가장 편하게.',
+    intro:
+      'DevTools, SDK 레퍼런스 앱, polyfill 등 앱인토스 미니앱 개발 흐름 전반을 지원하는 커뮤니티 오픈소스 프로젝트입니다. 브라우저에서 바로 개발·테스트할 수 있습니다.',
     ctaPrimary: '웹 데모 열기',
     ctaSecondary: 'GitHub →',
     newTab: '새 탭에서 열기',
@@ -15,6 +17,8 @@ const copy = {
   en: {
     title: 'apps-in-toss-community',
     tagline: 'The most convenient way to build Apps in Toss mini-apps.',
+    intro:
+      'A community open-source project providing DevTools, an SDK reference app, polyfill, and more — covering the full Apps in Toss mini-app development workflow. Build and test right in the browser.',
     ctaPrimary: 'Open web demo',
     ctaSecondary: 'GitHub →',
     newTab: 'opens in new tab',
@@ -80,11 +84,23 @@ export function Hero({ lang }: HeroProps) {
           fontSize: 'clamp(16px, 2.5vw, 20px)',
           color: 'var(--fg-soft)',
           maxWidth: '560px',
-          margin: '0 auto 36px',
+          margin: '0 auto 16px',
           lineHeight: 1.5,
         }}
       >
         {t.tagline}
+      </p>
+
+      <p
+        style={{
+          fontSize: 'clamp(14px, 1.8vw, 16px)',
+          color: 'var(--fg-muted, var(--fg-soft))',
+          maxWidth: '600px',
+          margin: '0 auto 36px',
+          lineHeight: 1.6,
+        }}
+      >
+        {t.intro}
       </p>
 
       <div
