@@ -1,0 +1,70 @@
+# Apps In Toss Community (AITC)
+
+> Community open-source tooling for Apps in Toss mini-app development.
+
+AITC provides developer tools, reference implementations, and infrastructure
+that make it easier to build and test mini-apps on the Apps in Toss platform.
+All projects are community-maintained and open-source.
+
+## Domains
+
+- Site: https://aitc.dev
+- SDK example demo: https://sdk-example.aitc.dev
+- DevTools demo: https://devtools.aitc.dev
+- Docs: https://docs.aitc.dev
+- GitHub org: https://github.com/apps-in-toss-community
+
+## Pages
+
+- [한국어 홈 (Korean)](https://aitc.dev/ko/)
+- [English home](https://aitc.dev/en/)
+
+## Projects
+
+### devtools (available)
+Browser DevTools panel and unplugin that mocks the `@apps-in-toss/web-framework`
+SDK so mini-apps can be developed and tested in a regular browser without the
+Toss app. Includes hot-reload and API stub controls.
+- Repo: https://github.com/apps-in-toss-community/devtools
+- npm: @ait-co/devtools
+
+### sdk-example (available)
+Interactive reference app that exercises every public SDK API. Deployed as a
+live web demo so contributors can explore SDK behaviour without a device.
+- Site: https://sdk-example.aitc.dev
+- Repo: https://github.com/apps-in-toss-community/sdk-example
+
+### polyfill (coming soon)
+Standard Web API polyfill layer for mini-apps. Lets developers write against
+browser-standard APIs while targeting the Apps in Toss runtime.
+- Repo: https://github.com/apps-in-toss-community/polyfill
+
+### docs (coming soon)
+Community-maintained guide and API reference for Apps in Toss mini-app
+development.
+- Site: https://docs.aitc.dev
+- Repo: https://github.com/apps-in-toss-community/docs
+
+### console-cli (coming soon)
+Headless CLI for the Apps in Toss developer console. Automates app registration,
+submission, and release management.
+- Repo: https://github.com/apps-in-toss-community/console-cli
+- npm: @ait-co/console-cli
+
+### oidc-bridge (coming soon)
+Bridges Toss login to standard OIDC and Firebase Custom Token, enabling
+community apps to use familiar auth infrastructure.
+- Site: https://oidc-bridge.aitc.dev
+- Repo: https://github.com/apps-in-toss-community/oidc-bridge
+
+### oidc-bridge-cloud (coming soon)
+Managed cloud deployment of oidc-bridge for teams that prefer a hosted option.
+
+### agent-plugin (coming soon)
+Claude Code and OpenAI Codex plugin that orchestrates AITC tools — scaffold,
+develop, and deploy mini-apps from a single agent command.
+- Repo: https://github.com/apps-in-toss-community/agent-plugin
+
+### metrics-ingest (coming soon)
+Lightweight telemetry ingest service for tracking mini-app usage and
+performance metrics in community deployments.
