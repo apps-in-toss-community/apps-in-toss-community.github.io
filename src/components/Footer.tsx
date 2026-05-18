@@ -1,4 +1,20 @@
-export function Footer() {
+const COPY = {
+  ko: {
+    label: '커뮤니티 오픈소스 프로젝트입니다.',
+    srOnly: ' (새 탭에서 열림)',
+  },
+  en: {
+    label: 'Community open-source project.',
+    srOnly: ' (opens in new tab)',
+  },
+} as const;
+
+interface FooterProps {
+  lang: 'ko' | 'en';
+}
+
+export function Footer({ lang }: FooterProps) {
+  const copy = COPY[lang];
   return (
     <footer
       style={{
@@ -19,10 +35,9 @@ export function Footer() {
           rel="noopener noreferrer"
           style={{ color: 'inherit', textDecoration: 'underline' }}
         >
-          community-driven
-          <span className="sr-only"> (opens in new tab)</span>
+          {copy.label}
+          <span className="sr-only">{copy.srOnly}</span>
         </a>
-        , not affiliated with Toss.
       </p>
     </footer>
   );
