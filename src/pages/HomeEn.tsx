@@ -66,7 +66,7 @@ export function HomeEn() {
         <QuickStart lang={LANG} />
         <Resources lang={LANG} />
       </main>
-      <Footer />
+      <Footer lang={LANG} />
     </>
   );
 }
