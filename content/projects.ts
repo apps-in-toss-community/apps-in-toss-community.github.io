@@ -48,8 +48,8 @@ export const projects: Project[] = [
     repo: 'docs',
     status: 'coming-soon',
     description: {
-      ko: '앱인토스 공식 문서를 기반으로 더 **세련되고 친절하게** 재구성한 커뮤니티 가이드/레퍼런스.',
-      en: 'A **cleaner, friendlier** community-maintained set of guides and references, built on top of the Apps in Toss official documentation.',
+      ko: '앱인토스 SDK 문서를 기반으로 더 **세련되고 친절하게** 재구성한 커뮤니티 가이드/레퍼런스.',
+      en: 'A **cleaner, friendlier** community-curated reference built around the Apps in Toss SDK.',
     },
   },
   {
@@ -57,9 +57,10 @@ export const projects: Project[] = [
     name: 'oidc-bridge',
     repo: 'oidc-bridge',
     status: 'coming-soon',
+    demoUrl: 'https://oidc-bridge.aitc.dev/',
     description: {
-      ko: '토스 로그인을 **표준 OIDC**와 **Firebase Custom Token**으로 중계하는 오픈소스 서버. Supabase Auth, Firebase Auth, Auth0 등 어디든 바로 연결할 수 있어요. zero-code mode 구현 중 — 공용 인스턴스(`oidc-bridge.aitc.dev`)가 곧 올라옵니다.',
-      en: 'An open-source server that bridges Toss login into **standard OIDC** and **Firebase Custom Tokens** — plug straight into Supabase Auth, Firebase Auth, Auth0, or any OIDC-compatible IdP. Zero-code mode is under active implementation; the public instance at `oidc-bridge.aitc.dev` is on the way.',
+      ko: '토스 로그인을 **표준 OIDC**와 **Firebase Custom Token**으로 중계하는 오픈소스 서버. Supabase Auth, Firebase Auth, Auth0 등 어디든 바로 연결할 수 있어요. 공용 인스턴스는 `oidc-bridge.aitc.dev`에서 운영 중.',
+      en: 'An open-source server that bridges Toss login into **standard OIDC** and **Firebase Custom Tokens** — plug straight into Supabase Auth, Firebase Auth, Auth0, or any OIDC-compatible IdP. Public instance live at `oidc-bridge.aitc.dev`.',
     },
   },
   {

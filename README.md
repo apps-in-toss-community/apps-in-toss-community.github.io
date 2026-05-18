@@ -20,6 +20,9 @@
 pnpm dev          # 로컬 dev 서버
 pnpm build        # dist/ 사전 렌더링
 pnpm typecheck    # tsc --noEmit
+pnpm test         # Vitest 단위 테스트
+pnpm test:a11y    # Playwright + axe-core a11y 감사 (build 필요)
+pnpm lint         # Biome 린트
 pnpm sync:readme  # out/profile/README.md + README.en.md 생성
 ```
 
@@ -65,7 +68,7 @@ pnpm build:og
 
 `scripts/sync-readme.ts`는 `content/projects.ts`, `content/values.{ko,en}.mdx`, `content/quickstart.{ko,en}.mdx`를 읽어 두 README를 생성합니다.
 
-`.github/workflows/sync-org-readme.yml` 워크플로는 `main`에 `content/`(또는 스크립트 자체)가 변경될 때 트리거됩니다. `SYNC_PAT`로 `.github` repo를 체크아웃한 뒤 `pnpm sync:readme --out ../dotgithub/profile`을 실행하고 변경이 있으면 커밋합니다.
+`.github/workflows/sync-org-readme.yml` 워크플로는 `main`에 `content/`(또는 스크립트 자체)가 변경될 때 트리거됩니다. GitHub App installation token(`SYNC_APP_ID` + `SYNC_APP_PRIVATE_KEY` 시크릿으로 발급, `ait-community-sync-bot` App)으로 `.github` repo를 체크아웃한 뒤 `pnpm sync:readme --out ../dotgithub/profile`을 실행하고 변경이 있으면 커밋합니다.
 
 로컬에서 실행해 결과를 확인하려면:
 

@@ -27,6 +27,10 @@ const STRINGS = {
     offerHeading: '이런 것들을 할 수 있어요',
     gettingStartedHeading: 'devtools로 시작하기',
     langLink: '[English →](./README.en.md)',
+    projectsHeading: '프로젝트',
+    availableHeading: '✅ 사용 가능',
+    comingSoonHeading: '🚧 예정',
+    tableHeader: '| 프로젝트 | 설명 |',
     resources: [
       '📦 [`@apps-in-toss/web-framework`](https://www.npmjs.com/package/@apps-in-toss/web-framework) — 원본 SDK',
       '🏠 [Landing page](https://aitc.dev/) — 프로젝트 허브',
@@ -38,6 +42,10 @@ const STRINGS = {
     offerHeading: 'What we offer',
     gettingStartedHeading: 'Getting started with devtools',
     langLink: '[한국어 →](./README.md)',
+    projectsHeading: 'Projects',
+    availableHeading: '✅ Available Now',
+    comingSoonHeading: '🚧 Coming Soon',
+    tableHeader: '| Project | Description |',
     resources: [
       '📦 [`@apps-in-toss/web-framework`](https://www.npmjs.com/package/@apps-in-toss/web-framework) — the underlying SDK',
       '🏠 [Landing page](https://aitc.dev/) — project hub',
@@ -72,23 +80,24 @@ function projectRow(p: Project, lang: 'ko' | 'en'): string {
 
 /** Build the Projects section (Available Now + Coming Soon tables). */
 function buildProjectsSection(lang: 'ko' | 'en'): string {
+  const s = STRINGS[lang];
   const available = projects.filter((p) => p.status === 'available');
   const comingSoon = projects.filter((p) => p.status === 'coming-soon');
 
-  const tableHeader = '| Project | Description |\n|---|---|';
+  const tableHeader = `${s.tableHeader}\n|---|---|`;
 
   const availableRows = available.map((p) => projectRow(p, lang)).join('\n');
   const comingSoonRows = comingSoon.map((p) => projectRow(p, lang)).join('\n');
 
   return [
-    '## Projects',
+    `## ${s.projectsHeading}`,
     '',
-    '### ✅ Available Now',
+    `### ${s.availableHeading}`,
     '',
     tableHeader,
     availableRows,
     '',
-    '### 🚧 Coming Soon',
+    `### ${s.comingSoonHeading}`,
     '',
     tableHeader,
     comingSoonRows,

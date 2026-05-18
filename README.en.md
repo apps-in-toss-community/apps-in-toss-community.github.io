@@ -20,6 +20,9 @@ This repo also serves as the **single source of truth** for the org profile READ
 pnpm dev          # local dev server
 pnpm build        # pre-render to dist/
 pnpm typecheck    # tsc --noEmit
+pnpm test         # Vitest unit tests
+pnpm test:a11y    # Playwright + axe-core a11y audit (requires build)
+pnpm lint         # Biome lint
 pnpm sync:readme  # generate out/profile/README.md + README.en.md
 ```
 
@@ -65,7 +68,7 @@ Then review the diff in `public/og/` before committing.
 
 `scripts/sync-readme.ts` reads `content/projects.ts`, `content/values.{ko,en}.mdx`, and `content/quickstart.{ko,en}.mdx` to produce both READMEs.
 
-The `.github/workflows/sync-org-readme.yml` workflow triggers on pushes to `main` that touch `content/` (or the script itself), checks out the `.github` repo via `SYNC_PAT`, runs `pnpm sync:readme --out ../dotgithub/profile`, and commits any diff.
+The `.github/workflows/sync-org-readme.yml` workflow triggers on pushes to `main` that touch `content/` (or the script itself). It generates a GitHub App installation token (`SYNC_APP_ID` + `SYNC_APP_PRIVATE_KEY` secrets, `ait-community-sync-bot` App), checks out the `.github` repo, runs `pnpm sync:readme --out ../dotgithub/profile`, and commits any diff.
 
 To run locally and inspect the output:
 

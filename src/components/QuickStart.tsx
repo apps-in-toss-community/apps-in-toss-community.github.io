@@ -14,8 +14,14 @@ const headings = {
   en: 'Getting started with devtools',
 };
 
-function CopyButton({ text }: { text: string }) {
+const COPY_LABELS = {
+  ko: { copy: '복사', copied: '복사됨!', ariaIdle: '클립보드에 복사', ariaDone: '복사됨!' },
+  en: { copy: 'Copy', copied: 'Copied!', ariaIdle: 'Copy to clipboard', ariaDone: 'Copied!' },
+} as const;
+
+function CopyButton({ text, lang }: { text: string; lang: Lang }) {
   const [copied, setCopied] = useState(false);
+  const labels = COPY_LABELS[lang];
 
   async function handleCopy() {
     try {
@@ -31,7 +37,7 @@ function CopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
+      aria-label={copied ? labels.ariaDone : labels.ariaIdle}
       className="quickstart-copy"
       style={{
         position: 'absolute',
@@ -49,7 +55,7 @@ function CopyButton({ text }: { text: string }) {
         fontFamily: 'inherit',
       }}
     >
-      {copied ? 'Copied!' : 'Copy'}
+      {copied ? labels.copied : labels.copy}
     </button>
   );
 }
@@ -71,81 +77,89 @@ function InlineCode({ children }: { children?: React.ReactNode }) {
   );
 }
 
-function CodeBlock({ children, className }: { children?: React.ReactNode; className?: string }) {
-  // Inline code (no className) must not render a block-level <div> inside a <p>,
-  // as that produces invalid HTML and causes React hydration mismatches (#418).
-  if (!className) {
-    return <InlineCode>{children}</InlineCode>;
-  }
-
-  if (typeof children !== 'string') {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn('CodeBlock received non-string children:', children);
+function makeCodeBlock(uiLang: Lang) {
+  return function CodeBlock({
+    children,
+    className,
+  }: {
+    children?: React.ReactNode;
+    className?: string;
+  }) {
+    // Inline code (no className) must not render a block-level <div> inside a <p>,
+    // as that produces invalid HTML and causes React hydration mismatches (#418).
+    if (!className) {
+      return <InlineCode>{children}</InlineCode>;
     }
-    return null;
-  }
 
-  const text = children.trimEnd();
-  const lang = className.replace('language-', '');
+    if (typeof children !== 'string') {
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('CodeBlock received non-string children:', children);
+      }
+      return null;
+    }
 
-  return (
-    <div style={{ position: 'relative', marginTop: '10px', marginBottom: '10px' }}>
-      {lang && (
-        <span
+    const text = children.trimEnd();
+    const codeLang = className.replace('language-', '');
+
+    return (
+      <div style={{ position: 'relative', marginTop: '10px', marginBottom: '10px' }}>
+        {codeLang && (
+          <span
+            style={{
+              position: 'absolute',
+              top: '10px',
+              left: '16px',
+              fontSize: '10px',
+              fontWeight: 600,
+              letterSpacing: '0.06em',
+              color: 'var(--code-label-fg)',
+              textTransform: 'uppercase',
+              fontFamily: 'ui-monospace, "SF Mono", Menlo, monospace',
+            }}
+          >
+            {codeLang}
+          </span>
+        )}
+        <pre
           style={{
-            position: 'absolute',
-            top: '10px',
-            left: '16px',
-            fontSize: '10px',
-            fontWeight: 600,
-            letterSpacing: '0.06em',
-            color: 'var(--code-label-fg)',
-            textTransform: 'uppercase',
-            fontFamily: 'ui-monospace, "SF Mono", Menlo, monospace',
+            background: 'var(--code-bg)',
+            color: 'var(--code-fg)',
+            padding: codeLang ? '34px 18px 16px' : '16px 18px',
+            borderRadius: '10px',
+            overflowX: 'auto',
+            fontSize: '13px',
+            lineHeight: 1.65,
+            fontFamily: 'ui-monospace, "SF Mono", Menlo, "Fira Code", monospace',
+            margin: 0,
           }}
         >
-          {lang}
-        </span>
-      )}
-      <pre
-        style={{
-          background: 'var(--code-bg)',
-          color: 'var(--code-fg)',
-          padding: lang ? '34px 18px 16px' : '16px 18px',
-          borderRadius: '10px',
-          overflowX: 'auto',
-          fontSize: '13px',
-          lineHeight: 1.65,
-          fontFamily: 'ui-monospace, "SF Mono", Menlo, "Fira Code", monospace',
-          margin: 0,
-        }}
-      >
-        <code>{text}</code>
-      </pre>
-      {text && <CopyButton text={text} />}
-    </div>
-  );
+          <code>{text}</code>
+        </pre>
+        {text && <CopyButton text={text} lang={uiLang} />}
+      </div>
+    );
+  };
 }
-
-const mdxComponents = {
-  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p
-      style={{
-        fontSize: '14px',
-        color: 'var(--fg-soft)',
-        lineHeight: 1.65,
-        margin: '0 0 8px',
-      }}
-      {...props}
-    />
-  ),
-  pre: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
-  code: CodeBlock,
-};
 
 export function QuickStart({ lang }: QuickStartProps) {
   const heading = headings[lang];
   const Content = lang === 'ko' ? QuickStartKo : QuickStartEn;
+
+  const mdxComponents = {
+    p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
+      <p
+        style={{
+          fontSize: '14px',
+          color: 'var(--fg-soft)',
+          lineHeight: 1.65,
+          margin: '0 0 8px',
+        }}
+        {...props}
+      />
+    ),
+    pre: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
+    code: makeCodeBlock(lang),
+  };
 
   return (
     <section
