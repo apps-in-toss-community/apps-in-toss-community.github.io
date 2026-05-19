@@ -56,6 +56,7 @@ function renderDescription(text: string): React.ReactNode {
 const NEW_TAB_LABEL = { ko: '새 탭에서 열기', en: 'opens in new tab' } as const;
 const UPDATED_LABEL = { ko: '업데이트', en: 'updated' } as const;
 const STARS_LABEL = { ko: '스타', en: 'stars' } as const;
+const COMING_SOON_LABEL = { ko: '예정', en: 'Coming Soon' } as const;
 
 function ProjectMeta({ repo, lang }: { repo: string; lang: Lang }) {
   const meta = META[repo];
@@ -148,7 +149,7 @@ export function ProjectCard({ project, lang }: ProjectCardProps) {
               textTransform: 'uppercase',
             }}
           >
-            Coming Soon
+            {COMING_SOON_LABEL[lang]}
           </span>
         )}
       </h3>
