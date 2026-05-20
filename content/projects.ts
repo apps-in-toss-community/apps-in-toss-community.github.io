@@ -38,8 +38,8 @@ export const projects: Project[] = [
     repo: 'polyfill',
     status: 'available',
     description: {
-      ko: '독점 SDK 대신 **웹 표준 API**(`navigator.clipboard`, `navigator.geolocation`, ...)를 그대로 사용해 미니앱을 만들 수 있는 polyfill.',
-      en: 'A polyfill so you can build mini-apps with **standard Web APIs** (`navigator.clipboard`, `navigator.geolocation`, ...) instead of the proprietary SDK.',
+      ko: 'SDK를 직접 import하지 않고도 **웹 표준 API**(`navigator.clipboard`, `navigator.geolocation`, ...)를 그대로 써서 미니앱을 만들 수 있는 polyfill — 런타임에 SDK로 자동 라우팅됩니다.',
+      en: 'A polyfill so you can build mini-apps with **standard Web APIs** (`navigator.clipboard`, `navigator.geolocation`, ...) that transparently route through the SDK at runtime.',
     },
   },
   {
