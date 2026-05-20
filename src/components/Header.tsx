@@ -50,7 +50,7 @@ export function Header({ lang }: HeaderProps) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <ThemeToggle lang={lang} />
           <nav
-            aria-label="Language switcher"
+            aria-label={lang === 'ko' ? '언어 선택' : 'Language switcher'}
             style={{
               display: 'flex',
               alignItems: 'center',

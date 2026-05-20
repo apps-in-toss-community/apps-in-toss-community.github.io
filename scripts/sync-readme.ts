@@ -31,6 +31,7 @@ const STRINGS = {
     availableHeading: '✅ 사용 가능',
     comingSoonHeading: '🚧 예정',
     tableHeader: '| 프로젝트 | 설명 |',
+    resourcesHeading: '리소스',
     resources: [
       '📦 [`@apps-in-toss/web-framework`](https://www.npmjs.com/package/@apps-in-toss/web-framework) — 원본 SDK',
       '🏠 [Landing page](https://aitc.dev/) — 프로젝트 허브',
@@ -46,6 +47,7 @@ const STRINGS = {
     availableHeading: '✅ Available Now',
     comingSoonHeading: '🚧 Coming Soon',
     tableHeader: '| Project | Description |',
+    resourcesHeading: 'Resources',
     resources: [
       '📦 [`@apps-in-toss/web-framework`](https://www.npmjs.com/package/@apps-in-toss/web-framework) — the underlying SDK',
       '🏠 [Landing page](https://aitc.dev/) — project hub',
@@ -145,7 +147,7 @@ async function buildReadme(lang: 'ko' | 'en'): Promise<string> {
     '---',
     '',
     // Resources
-    '## Resources',
+    `## ${s.resourcesHeading}`,
     '',
     s.resources.map((r) => `- ${r}`).join('\n'),
   ];
