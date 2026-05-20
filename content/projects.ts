@@ -46,7 +46,8 @@ export const projects: Project[] = [
     id: 'docs',
     name: 'docs',
     repo: 'docs',
-    status: 'coming-soon',
+    status: 'available',
+    demoUrl: 'https://docs.aitc.dev/',
     description: {
       ko: '앱인토스 SDK 문서를 기반으로 더 **세련되고 친절하게** 재구성한 커뮤니티 가이드/레퍼런스.',
       en: 'A **cleaner, friendlier** community-curated reference built around the Apps in Toss SDK.',
@@ -56,7 +57,7 @@ export const projects: Project[] = [
     id: 'oidc-bridge',
     name: 'oidc-bridge',
     repo: 'oidc-bridge',
-    status: 'coming-soon',
+    status: 'available',
     demoUrl: 'https://oidc-bridge.aitc.dev/',
     description: {
       ko: '토스 로그인을 **표준 OIDC**와 **Firebase Custom Token**으로 중계하는 오픈소스 서버. Supabase Auth, Firebase Auth, Auth0 등 어디든 바로 연결할 수 있어요. 공용 인스턴스는 `oidc-bridge.aitc.dev`에서 운영 중.',
