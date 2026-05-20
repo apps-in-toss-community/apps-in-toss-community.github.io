@@ -65,12 +65,17 @@ export function LangBanner() {
   // e.g. "This page is in Korean." appears on the Korean page when the
   // browser language is English, prompting the user to switch.
   const message = pageLang === 'ko' ? 'This page is in Korean.' : '이 페이지는 영어로 제공됩니다.';
+  // The banner's own chrome (region + dismiss control) follows the PAGE
+  // locale so a screen reader announces it in the language the user is
+  // browsing, unlike `message`/`switchLabel` which target the other locale.
+  const regionLabel = pageLang === 'ko' ? '언어 설정' : 'Language preference';
+  const dismissLabel = pageLang === 'ko' ? '언어 배너 닫기' : 'Dismiss language banner';
 
   return (
     // <section> with aria-label avoids conflicting with the implicit
     // role="banner" already carried by the <header> element in Header.tsx.
     <section
-      aria-label="Language preference"
+      aria-label={regionLabel}
       style={{
         background: 'var(--card)',
         borderBottom: '1px solid var(--border)',
@@ -104,7 +109,7 @@ export function LangBanner() {
       <button
         type="button"
         onClick={dismiss}
-        aria-label="Dismiss language banner"
+        aria-label={dismissLabel}
         className="lang-banner-dismiss"
         style={{
           background: 'none',
