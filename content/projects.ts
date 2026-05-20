@@ -78,10 +78,10 @@ export const projects: Project[] = [
     id: 'agent-plugin',
     name: 'agent-plugin',
     repo: 'agent-plugin',
-    status: 'coming-soon',
+    status: 'available',
     description: {
-      ko: '위 도구들을 엮어 **Claude Code와 OpenAI Codex 안에서 미니앱을 생성·개발·테스트·배포**할 수 있게 해주는 커뮤니티 플러그인. 궁극적으로 단일 repo에서 양쪽 marketplace로 듀얼 배포될 예정입니다.',
-      en: 'A community plugin that ties everything together — **scaffold, develop, test, and publish mini-apps from inside Claude Code and OpenAI Codex**. Planned dual-distribution to both marketplaces from a single repo.',
+      ko: '위 도구들을 엮어 **Claude Code 안에서 미니앱을 생성·개발·테스트·배포**할 수 있게 해주는 커뮤니티 플러그인. `/ait new`로 scaffold부터 배포까지 에이전트 안에서 완주할 수 있어요. OpenAI Codex 배포는 스펙 확정 후 추가될 예정입니다.',
+      en: 'A community plugin that ties everything together — **scaffold, develop, test, and publish mini-apps from inside Claude Code** with `/ait new` and a full agentic workflow. OpenAI Codex distribution is planned once the plugin spec stabilises.',
     },
   },
 ];
