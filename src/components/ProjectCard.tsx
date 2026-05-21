@@ -39,18 +39,27 @@ function formatRelative(iso: string, lang: Lang, now: number = Date.now()): stri
 
 /**
  * Renders a description string that may contain backtick-wrapped code
- * (e.g., `navigator.clipboard`) as inline <code> elements.
+ * (e.g., `navigator.clipboard`) as inline <code> elements and **bold** spans
+ * as <strong> elements.
  *
- * `parts` is derived deterministically from the immutable `text`, so positions
- * never reorder — index-as-key is genuinely safe here. Using the index keeps
- * the key stable even if a description repeats the same backtick span twice.
+ * Tokens derive deterministically from the immutable `text`, so positions never
+ * reorder — index-as-key is genuinely safe here. The capturing groups in the
+ * split regex mean matched spans land at odd-or-prefixed positions; we route
+ * each token by which delimiter it carries.
  */
 function renderDescription(text: string): React.ReactNode {
-  const parts = text.split(/`([^`]+)`/);
-  return parts.map((part, i) =>
-    // biome-ignore lint/suspicious/noArrayIndexKey: parts derives deterministically from immutable text; positions never reorder
-    i % 2 === 1 ? <code key={i}>{part}</code> : part,
-  );
+  const tokens = text.split(/(`[^`]+`|\*\*[^*]+\*\*)/);
+  return tokens.map((token, i) => {
+    if (token.startsWith('`') && token.endsWith('`')) {
+      // biome-ignore lint/suspicious/noArrayIndexKey: tokens derive deterministically from immutable text; positions never reorder
+      return <code key={i}>{token.slice(1, -1)}</code>;
+    }
+    if (token.startsWith('**') && token.endsWith('**')) {
+      // biome-ignore lint/suspicious/noArrayIndexKey: tokens derive deterministically from immutable text; positions never reorder
+      return <strong key={i}>{token.slice(2, -2)}</strong>;
+    }
+    return token;
+  });
 }
 
 const NEW_TAB_LABEL = { ko: '새 탭에서 열기', en: 'opens in new tab' } as const;
