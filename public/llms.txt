@@ -34,37 +34,42 @@ live web demo so contributors can explore SDK behaviour without a device.
 - Site: https://sdk-example.aitc.dev
 - Repo: https://github.com/apps-in-toss-community/sdk-example
 
-### polyfill (coming soon)
+### polyfill (available)
 Standard Web API polyfill layer for mini-apps. Lets developers write against
 browser-standard APIs while targeting the Apps in Toss runtime.
 - Repo: https://github.com/apps-in-toss-community/polyfill
+- npm: @ait-co/polyfill
 
-### docs (coming soon)
+### docs (available)
 Community-maintained guide and API reference for Apps in Toss mini-app
 development.
 - Site: https://docs.aitc.dev
 - Repo: https://github.com/apps-in-toss-community/docs
 
-### console-cli (coming soon)
-Headless CLI for the Apps in Toss developer console. Automates app registration,
-submission, and release management.
+### console-cli (available)
+Headless CLI (`aitcc`) for the Apps in Toss developer console. Automates app
+registration, submission, and release management.
 - Repo: https://github.com/apps-in-toss-community/console-cli
 - npm: @ait-co/console-cli
 
-### oidc-bridge (coming soon)
+### oidc-bridge (available)
 Bridges Toss login to standard OIDC and Firebase Custom Token, enabling
 community apps to use familiar auth infrastructure.
 - Site: https://oidc-bridge.aitc.dev
 - Repo: https://github.com/apps-in-toss-community/oidc-bridge
 
-### oidc-bridge-cloud (coming soon)
-Managed cloud deployment of oidc-bridge for teams that prefer a hosted option.
+### oidc-bridge-cloud (available)
+Cloudflare Workers deployment layer for oidc-bridge; operates the public
+instance at oidc-bridge.aitc.dev.
+- Repo: https://github.com/apps-in-toss-community/oidc-bridge-cloud
 
-### agent-plugin (coming soon)
-Claude Code and OpenAI Codex plugin that orchestrates AITC tools — scaffold,
-develop, and deploy mini-apps from a single agent command.
+### agent-plugin (available)
+Claude Code plugin that orchestrates AITC tools — scaffold, develop, debug,
+and deploy mini-apps from `/ait` agent commands. OpenAI Codex distribution is
+planned once the plugin spec stabilises.
 - Repo: https://github.com/apps-in-toss-community/agent-plugin
 
-### metrics-ingest (coming soon)
-Lightweight telemetry ingest service for tracking mini-app usage and
-performance metrics in community deployments.
+### metrics-ingest (available)
+Anonymous usage-telemetry ingest service for the community dev tools (Cloudflare
+Workers + D1) — the signal source for 1.0.0 readiness.
+- Repo: https://github.com/apps-in-toss-community/metrics-ingest
