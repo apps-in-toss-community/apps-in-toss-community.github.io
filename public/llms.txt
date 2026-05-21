@@ -25,6 +25,7 @@ All projects are community-maintained and open-source.
 Browser DevTools panel and unplugin that mocks the `@apps-in-toss/web-framework`
 SDK so mini-apps can be developed and tested in a regular browser without the
 Toss app. Includes hot-reload and API stub controls.
+- Demo: https://devtools.aitc.dev
 - Repo: https://github.com/apps-in-toss-community/devtools
 - npm: @ait-co/devtools
 

@@ -53,33 +53,35 @@ export function ProjectGrid({ lang }: ProjectGridProps) {
         </div>
       </section>
 
-      <section aria-labelledby="coming-heading">
-        <h2
-          id="coming-heading"
-          style={{
-            fontSize: '12px',
-            fontWeight: 600,
-            color: 'var(--muted)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            margin: '0 0 16px',
-          }}
-        >
-          {headings.comingSoon}
-        </h2>
-        {/* gap is set by .project-grid-gap in index.css — no inline gap needed */}
-        <div
-          className="project-grid-gap"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 420px), 1fr))',
-          }}
-        >
-          {comingSoon.map((project) => (
-            <ProjectCard key={project.id} project={project} lang={lang} />
-          ))}
-        </div>
-      </section>
+      {comingSoon.length > 0 && (
+        <section aria-labelledby="coming-heading">
+          <h2
+            id="coming-heading"
+            style={{
+              fontSize: '12px',
+              fontWeight: 600,
+              color: 'var(--muted)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              margin: '0 0 16px',
+            }}
+          >
+            {headings.comingSoon}
+          </h2>
+          {/* gap is set by .project-grid-gap in index.css — no inline gap needed */}
+          <div
+            className="project-grid-gap"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 420px), 1fr))',
+            }}
+          >
+            {comingSoon.map((project) => (
+              <ProjectCard key={project.id} project={project} lang={lang} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

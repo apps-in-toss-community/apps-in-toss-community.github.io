@@ -8,7 +8,9 @@ const SKIP_LABEL = {
 
 export function Layout() {
   const { pathname } = useLocation();
-  const lang = pathname.startsWith('/ko') ? 'ko' : 'en';
+  // Korean is the default: only `/en*` is English (matches LangBanner + routes,
+  // where `/` and `/ko/` both render the Korean home).
+  const lang = pathname.startsWith('/en') ? 'en' : 'ko';
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
