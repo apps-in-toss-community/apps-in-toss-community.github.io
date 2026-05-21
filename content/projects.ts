@@ -16,6 +16,7 @@ export const projects: Project[] = [
     name: '@ait-co/devtools',
     repo: 'devtools',
     status: 'available',
+    demoUrl: 'https://devtools.aitc.dev/',
     description: {
       ko: '`@apps-in-toss/web-framework` SDK의 mock 라이브러리, 번들러 플러그인, floating DevTools 패널. **토스 앱 없이 웹 브라우저에서 미니앱을 구동·테스트**할 수 있습니다.',
       en: 'A mock library for `@apps-in-toss/web-framework` with a bundler plugin and a floating DevTools panel. **Run and test your mini-app in any web browser** without the Toss app.',
