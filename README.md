@@ -54,7 +54,7 @@ pnpm fetch:metadata
 
 ## OG 이미지
 
-홈페이지와 각 프로젝트의 정적 Open Graph PNG(1200×630)는 빌드 시 `scripts/build-og-images.tsx`가 생성합니다 — `src/og/template.tsx`의 JSX 템플릿 → satori → SVG → sharp → PNG → `public/og/<slug>.png`. `prebuild`의 일부로 실행되므로, 커밋된 PNG는 항상 현재 `content/projects.ts`와 일치합니다. Pretendard 폰트(SIL OFL)는 `src/og/fonts/`에 포함되어 있습니다.
+홈페이지와 각 프로젝트의 정적 Open Graph PNG(1200×630)는 빌드 시 `scripts/build-og-images.tsx`가 생성합니다 — `src/og/template.tsx`의 JSX 템플릿 → satori → SVG → sharp → PNG → `public/og/<slug>.png`. `prebuild`의 일부로 실행되므로, 커밋된 PNG는 항상 현재 `content/projects.ts`와 일치합니다. Pretendard 폰트(SIL OFL)는 `src/og/fonts/`에 포함되어 있습니다. `sharp`는 플랫폼별 prebuilt 바이너리(`@img/sharp-*`)로 동작해 빌드 스크립트가 필요 없으므로 `pnpm-workspace.yaml`의 `ignoredBuiltDependencies`에 두었습니다 — 시스템에 libvips가 설치돼 있어도 source 빌드로 새지 않습니다.
 
 템플릿이나 프로젝트 목록을 수정한 후 수동으로 재생성하려면:
 
