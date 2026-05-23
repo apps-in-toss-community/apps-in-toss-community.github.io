@@ -54,7 +54,7 @@ pnpm fetch:metadata
 
 ## OG images
 
-Static Open Graph PNGs (1200×630) for the homepage and every project are generated at build time by `scripts/build-og-images.tsx` — JSX template in `src/og/template.tsx` → satori → SVG → sharp → PNG → `public/og/<slug>.png`. Runs as part of `prebuild`, so the committed PNGs always match the current `content/projects.ts`. Pretendard fonts (SIL OFL) ship in `src/og/fonts/`.
+Static Open Graph PNGs (1200×630) for the homepage and every project are generated at build time by `scripts/build-og-images.tsx` — JSX template in `src/og/template.tsx` → satori → SVG → sharp → PNG → `public/og/<slug>.png`. Runs as part of `prebuild`, so the committed PNGs always match the current `content/projects.ts`. Pretendard fonts (SIL OFL) ship in `src/og/fonts/`. `sharp` runs from its platform prebuilt binary (`@img/sharp-*`) and needs no build step, so it lives under `ignoredBuiltDependencies` in `pnpm-workspace.yaml` — it never falls back to a source build even when libvips is installed system-wide.
 
 To regenerate manually after editing the template or projects list:
 
