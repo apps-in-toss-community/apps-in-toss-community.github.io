@@ -17,3 +17,4 @@ coverage/
 # Playwright test runner output
 /playwright-report/
 /test-results/
+.codegraph/
