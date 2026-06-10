@@ -2,7 +2,7 @@
 
 ## 프로젝트 성격
 
-`apps-in-toss-community`는 토스/앱인토스 팀과 제휴 관계가 없는 커뮤니티 프로젝트다. 공식 프로젝트 아님. 사용자에게 보여지는 모든 산출물(README, UI 카피, 패키지 설명, 커밋/PR 메시지, 코드 주석 등)에서 "공식(official)", "토스가 제공하는", "앱인토스에서 만든", "powered by Toss" 같은 제휴·후원·인증 암시 표현은 금지. 대신 "커뮤니티(community)" 같은 자연스러운 표현. 의심스러우면 빼라.
+`apps-in-toss-community`는 토스/앱인토스 팀과 제휴 관계가 없는 커뮤니티 프로젝트다. 사용자에게 보여지는 모든 산출물(README, UI 카피, 패키지 설명, 커밋/PR 메시지, 코드 주석 등)에서 "공식(official)", "토스가 제공하는", "앱인토스에서 만든", "powered by Toss" 같은 제휴·후원·인증 암시 표현은 금지. 대신 "커뮤니티(community)" 같은 자연스러운 표현. 의심스러우면 빼라.
 
 **landing page와 org profile README는 조직의 얼굴**이라 특히 주의. 이 규칙은 `content/`(MDX/TS), `scripts/sync-readme.ts`로 생성되는 org profile README, 모든 UI 카피에 동일 적용.
 
@@ -69,7 +69,7 @@ pnpm sync:readme    # out/profile/README.md + README.en.md 생성
 
 - **사이트**: main push → `deploy-pages.yml`이 `pnpm install && pnpm build` 후 `dist/`를 GitHub Pages에 배포. 빌드 산출물은 `dist/index.html`, `dist/ko/index.html`, `dist/en/index.html` 세 개 (vite-react-ssg 사전 렌더링).
 - **Org README**: main push에서 `content/**` 또는 `scripts/sync-readme.ts`가 변경되면 `sync-org-readme.yml`이 이 레포와 `.github` 레포를 함께 체크아웃, `pnpm sync:readme --out ../dotgithub/profile` 실행, 변경 있으면 `.github` 레포에 커밋·push.
-- **인증**: GitHub App installation token (`actions/create-github-app-token@v1`로 런타임 교환). 시크릿 `SYNC_APP_ID`, `SYNC_APP_PRIVATE_KEY` (`ait-community-sync-bot` App). `.github` repo의 branch ruleset은 이 App만 bypass actor — 사람 직접 push/merge 불가. (`SYNC_PAT` 방식은 2026-04에 App으로 마이그레이션됨.)
+- **인증**: GitHub App installation token (`actions/create-github-app-token@v3`로 런타임 교환). 시크릿 `SYNC_APP_ID`, `SYNC_APP_PRIVATE_KEY` (`ait-community-sync-bot` App). `.github` repo의 branch ruleset은 이 App만 bypass actor — 사람 직접 push/merge 불가.
 
 ## 카피 / 새 프로젝트 추가
 
