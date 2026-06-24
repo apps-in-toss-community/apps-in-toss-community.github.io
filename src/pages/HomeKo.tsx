@@ -8,7 +8,7 @@ import { Resources } from '../components/Resources';
 import { ValueList } from '../components/ValueList';
 
 const LANG = 'ko' as const;
-const TITLE = 'Apps In Toss Community — 앱인토스 미니앱 개발 커뮤니티 오픈소스';
+const TITLE = 'Apps in Toss Community — 앱인토스 미니앱 개발 커뮤니티 오픈소스';
 const DESCRIPTION =
   '앱인토스 미니앱 개발을 편하게 도와주는 커뮤니티 오픈소스 프로젝트. DevTools, SDK 레퍼런스, polyfill, docs 등 개발 흐름 전반을 지원합니다.';
 const CANONICAL = 'https://aitc.dev/ko/';
@@ -17,7 +17,7 @@ const JSON_LD = JSON.stringify([
   {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Apps In Toss Community',
+    name: 'Apps in Toss Community',
     url: 'https://aitc.dev',
     logo: 'https://aitc.dev/og/homepage.png',
     sameAs: ['https://github.com/apps-in-toss-community'],
@@ -25,7 +25,7 @@ const JSON_LD = JSON.stringify([
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Apps In Toss Community',
+    name: 'Apps in Toss Community',
     url: 'https://aitc.dev/ko/',
     inLanguage: 'ko',
   },
@@ -48,7 +48,7 @@ export function HomeKo() {
         <meta property="og:image" content="https://aitc.dev/og/homepage.png" />
         <meta property="og:locale" content="ko_KR" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Apps In Toss Community" />
+        <meta property="og:site_name" content="Apps in Toss Community" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESCRIPTION} />
