@@ -1,4 +1,4 @@
-# Apps In Toss Community (AITC)
+# Apps in Toss Community (AITC)
 
 > Community open-source tooling for Apps in Toss mini-app development.
 

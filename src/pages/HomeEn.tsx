@@ -8,7 +8,7 @@ import { Resources } from '../components/Resources';
 import { ValueList } from '../components/ValueList';
 
 const LANG = 'en' as const;
-const TITLE = 'Apps In Toss Community — mini-app dev tools';
+const TITLE = 'Apps in Toss Community — mini-app dev tools';
 const DESCRIPTION =
   'Community open-source tools for Apps in Toss mini-app development — DevTools browser emulator, SDK reference app, polyfill, docs, and more. Build and test without a device.';
 const CANONICAL = 'https://aitc.dev/en/';
@@ -17,7 +17,7 @@ const JSON_LD = JSON.stringify([
   {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Apps In Toss Community',
+    name: 'Apps in Toss Community',
     url: 'https://aitc.dev',
     logo: 'https://aitc.dev/og/homepage.png',
     sameAs: ['https://github.com/apps-in-toss-community'],
@@ -25,7 +25,7 @@ const JSON_LD = JSON.stringify([
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Apps In Toss Community',
+    name: 'Apps in Toss Community',
     url: 'https://aitc.dev/en/',
     inLanguage: 'en',
   },
@@ -48,7 +48,7 @@ export function HomeEn() {
         <meta property="og:image" content="https://aitc.dev/og/homepage.png" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Apps In Toss Community" />
+        <meta property="og:site_name" content="Apps in Toss Community" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESCRIPTION} />
