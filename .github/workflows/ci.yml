@@ -14,14 +14,23 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    # Fail fast instead of hanging to the 6-hour default: the Playwright install
-    # step has hung indefinitely on the runner image since #63 (Node 24 bump).
+    # Run inside the official Playwright container, which ships Chromium + all
+    # system libs pre-installed. This removes the `playwright install` download
+    # /extract step entirely — that step hung indefinitely on the bare runner
+    # image after #63 (the Chrome zip reached 100% then deadlocked in extract;
+    # confirmed in run-#28080975217 / #28081895036 logs). Tag must match the
+    # @playwright/test version in pnpm-lock.yaml (1.59.1).
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
+    # Fail fast instead of hanging to the 6-hour default.
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
 
       - uses: pnpm/action-setup@v6
 
+      # setup-node installs the .nvmrc version inside the container (the image's
+      # bundled node is overridden); the container only provides the browser.
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
@@ -39,22 +48,5 @@ jobs:
 
       # axe-core run against the SSG build via Playwright. See
       # docs/a11y-audit-2026-05.md for scope and manual follow-ups.
-      - name: Cache Playwright browsers
-        uses: actions/cache@v5
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-
-      # The browser binary downloads in ~2s, then `playwright install` hangs in
-      # its post-download host-dependency probe on the current runner image
-      # (confirmed in the run-#28080975217 log: 100% downloaded at 06:57:01,
-      # still hung at 07:13). PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS skips
-      # that probe; the per-step timeout caps any residual stall so the job's
-      # retry can take a clean second attempt instead of hanging to the cap.
-      - name: Install Playwright browsers
-        timeout-minutes: 5
-        env:
-          PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS: '1'
-        run: pnpm exec playwright install chromium
-
+      # No `playwright install` step — the container already has the browser.
       - run: pnpm test:a11y
