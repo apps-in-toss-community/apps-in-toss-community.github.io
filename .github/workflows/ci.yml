@@ -43,6 +43,9 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+        # No --with-deps: ubuntu-latest already ships Chromium's system libs, and
+        # the apt-get step it triggers hangs on the current runner image (verify
+        # has hung here on every run since the Node 24 / actions bump in #63).
+        run: pnpm exec playwright install chromium
 
       - run: pnpm test:a11y
