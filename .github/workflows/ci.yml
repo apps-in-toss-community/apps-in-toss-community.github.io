@@ -14,6 +14,9 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    # Fail fast instead of hanging to the 6-hour default: the Playwright install
+    # step has hung indefinitely on the runner image since #63 (Node 24 bump).
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
 
@@ -42,10 +45,16 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
+      # The browser binary downloads in ~2s, then `playwright install` hangs in
+      # its post-download host-dependency probe on the current runner image
+      # (confirmed in the run-#28080975217 log: 100% downloaded at 06:57:01,
+      # still hung at 07:13). PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS skips
+      # that probe; the per-step timeout caps any residual stall so the job's
+      # retry can take a clean second attempt instead of hanging to the cap.
       - name: Install Playwright browsers
-        # No --with-deps: ubuntu-latest already ships Chromium's system libs, and
-        # the apt-get step it triggers hangs on the current runner image (verify
-        # has hung here on every run since the Node 24 / actions bump in #63).
+        timeout-minutes: 5
+        env:
+          PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS: '1'
         run: pnpm exec playwright install chromium
 
       - run: pnpm test:a11y
