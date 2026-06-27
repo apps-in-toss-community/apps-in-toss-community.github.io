@@ -37,6 +37,7 @@ const STRINGS = {
       '🏠 [Landing page](https://aitc.dev/) — 프로젝트 허브',
       '🧪 [SDK Web Demo](https://sdk-example.aitc.dev/) — 브라우저에서 모든 API 실행',
     ],
+    footer: '커뮤니티 오픈소스 프로젝트입니다.',
   },
   en: {
     tagline: 'The most convenient way to build Apps in Toss mini-apps.',
@@ -53,6 +54,7 @@ const STRINGS = {
       '🏠 [Landing page](https://aitc.dev/) — project hub',
       '🧪 [SDK Web Demo](https://sdk-example.aitc.dev/) — every API in your browser',
     ],
+    footer: 'Community open-source project.',
   },
 } as const;
 
@@ -150,6 +152,11 @@ async function buildReadme(lang: 'ko' | 'en'): Promise<string> {
     `## ${s.resourcesHeading}`,
     '',
     s.resources.map((r) => `- ${r}`).join('\n'),
+    '',
+    // Footer disclaimer — one line, plain text (no defensive labels). See CLAUDE.md tone guide.
+    '---',
+    '',
+    s.footer,
   ];
 
   return `${sections.join('\n')}\n`;
