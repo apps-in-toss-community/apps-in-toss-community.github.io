@@ -44,6 +44,26 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'debugger',
+    name: '@ait-co/debugger',
+    repo: 'debugger',
+    status: 'available',
+    description: {
+      ko: '실기기 토스 앱 WebView를 **CDP relay로 붙여 에이전트가 직접 디버깅·테스트**하게 해주는 MCP 데몬 + test runner(`debugger`, `debugger-test` bin). devDependency로 설치하거나 `npx`로 바로 실행할 수 있고, 프로덕션 번들에는 절대 들어가지 않아요.',
+      en: 'An MCP daemon and test runner that attaches a **real-device Toss app WebView over a CDP relay so agents can debug and test directly** (`debugger`, `debugger-test` bins). Install as a devDependency or run straight from `npx` — it never ships in a production bundle.',
+    },
+  },
+  {
+    id: 'debug-console',
+    name: '@ait-co/debug-console',
+    repo: 'debugger',
+    status: 'available',
+    description: {
+      ko: '실기기 WebView 안에서 도는 **on-device attach 런타임 + eruda 인앱 콘솔**. `@ait-co/debugger`와 짝을 이루는 패키지 중 프로덕션 번들에 들어갈 수 있는 유일한 쪽으로, dependency는 `eruda` 하나뿐이에요.',
+      en: 'The **on-device attach runtime and eruda in-app console** that runs inside the WebView. Paired with `@ait-co/debugger`, this is the only one of the two that can enter a production bundle — its sole dependency is `eruda`.',
+    },
+  },
+  {
     id: 'docs',
     name: 'docs',
     repo: 'docs',
