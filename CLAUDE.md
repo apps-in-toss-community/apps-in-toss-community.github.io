@@ -22,7 +22,7 @@
 
 Vite + React 19 + TypeScript, Tailwind CSS v4 (`@tailwindcss/vite`), MDX (`@mdx-js/rollup`) for content, **vite-react-ssg**로 정적 사전 렌더링, **react-router-dom v6 고정** (vite-react-ssg가 v6 API 의존, v7 업그레이드 시 vite-react-ssg를 v7 호환 버전으로 함께 올려야 함). 기존 코드 맥락상 Biome `noArrayIndexKey`, `useButtonType`은 우선 off, 후속 PR에서 개선.
 
-공통 스택: **Node 24 LTS, pnpm 10.33.0, TypeScript strict, Biome (lint+format, ESLint/Prettier 사용 안 함)**. pre-commit hook은 source-controlled (`.githooks/pre-commit`), contributor가 수동 활성화: `git config core.hooksPath .githooks`. Commit message는 Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
+공통 스택: **Node 24 LTS, pnpm 11.17.0, TypeScript strict, Biome (lint+format, ESLint/Prettier 사용 안 함)**. pre-commit hook은 source-controlled (`.githooks/pre-commit`), contributor가 수동 활성화: `git config core.hooksPath .githooks`. Commit message는 Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
 
 ## 명령어
 
